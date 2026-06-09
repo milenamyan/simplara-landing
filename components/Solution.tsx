@@ -22,7 +22,7 @@ export default function Solution() {
   ];
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-b from-secondary to-white">
+    <section className="py-16 lg:py-24 bg-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Visual */}
@@ -106,7 +106,7 @@ export default function Solution() {
               ))}
             </div>
 
-            <div className="mt-8 p-6 bg-gradient-to-br from-accent/30 to-yellow-50 rounded-2xl border-2 border-yellow-200">
+            <div className="mt-8 p-6 bg-gradient-to-br from-primary/10 to-secondary rounded-2xl border-2 border-primary/20">
               <p className="text-lg font-semibold text-dark">
                 {t("cta")}
               </p>

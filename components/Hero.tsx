@@ -11,7 +11,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative bg-gradient-to-b from-secondary via-white to-white overflow-hidden">
+    <section className="relative bg-secondary overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 lg:pt-32 lg:pb-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}

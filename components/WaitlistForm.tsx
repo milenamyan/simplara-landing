@@ -125,7 +125,7 @@ export default function WaitlistForm() {
   }
 
   return (
-    <section id="waitlist" className="py-16 lg:py-24 bg-gradient-to-b from-secondary to-white">
+    <section id="waitlist" className="py-16 lg:py-24 bg-secondary">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-dark mb-4">

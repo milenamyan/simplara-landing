@@ -30,7 +30,7 @@ export default function MeetLumi() {
   ];
 
   return (
-    <section className="py-16 lg:py-24 bg-white">
+    <section className="py-16 lg:py-24 bg-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: LUMI Visual */}
@@ -99,7 +99,7 @@ export default function MeetLumi() {
               ))}
             </div>
 
-            <div className="bg-gradient-to-r from-accent/40 to-yellow-100 rounded-2xl p-6 border-2 border-yellow-300">
+            <div className="bg-gradient-to-r from-primary/10 to-secondary rounded-2xl p-6 border-2 border-primary/20">
               <p className="text-lg font-semibold text-dark mb-2">
                 {t("philosophy")}
               </p>
