@@ -1,12 +1,12 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-
-type Locale = (typeof routing.locales)[number];
 import Image from "next/image";
 import { useState } from "react";
+
+type Locale = (typeof routing.locales)[number];
 
 export default function Header() {
   const t = useTranslations("header");
@@ -29,6 +29,14 @@ export default function Header() {
     }
   };
 
+  const goToHome = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    setIsMenuOpen(false);
+    if (pathname === "/") {
+      e.preventDefault();
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const languages: { code: Locale; name: string }[] = [
     { code: "en", name: "English" },
     { code: "ru", name: "Русский" },
@@ -39,7 +47,11 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <Link
+            href="/"
+            onClick={goToHome}
+            className="flex items-center gap-2"
+          >
             <div className="w-10 h-10 rounded-xl flex items-center justify-center">
               <Image
                 src="/assets/logo.png"
@@ -50,7 +62,7 @@ export default function Header() {
               />
             </div>
             <span className="text-xl font-bold text-dark">SIMPLARA</span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
