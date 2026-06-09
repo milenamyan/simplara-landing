@@ -102,19 +102,19 @@ export default function WaitlistForm() {
 
   if (isSubmitted) {
     return (
-      <section id="waitlist" className="py-16 lg:py-24 bg-gradient-to-b from-primary to-primary/90">
+      <section id="waitlist" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-primary to-primary/90">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-white rounded-3xl p-12 shadow-2xl">
-            <div className="text-6xl mb-6">🎉</div>
-            <h2 className="text-3xl font-bold text-dark mb-4">
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-8 sm:p-12 shadow-2xl">
+            <div className="text-5xl sm:text-6xl mb-4 sm:mb-6">🎉</div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-3 sm:mb-4">
               {t("success.title")}
             </h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8">
               {t("success.description")}
             </p>
             <button
               onClick={() => setIsSubmitted(false)}
-              className="text-primary hover:text-primary/80 font-semibold"
+              className="text-primary hover:text-primary/80 font-semibold min-h-[44px]"
             >
               {t("success.submitAnother")}
             </button>
@@ -125,44 +125,44 @@ export default function WaitlistForm() {
   }
 
   return (
-    <section id="waitlist" className="py-16 lg:py-24 bg-secondary">
+    <section id="waitlist" className="py-12 sm:py-16 lg:py-24 bg-secondary">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-dark mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-3 sm:mb-4 px-2">
             {t("title")}<span className="text-primary">{t("titleHighlight")}</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
             {t("subtitle")}
           </p>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12 border border-gray-100">
-          <div className="mb-8 grid sm:grid-cols-3 gap-4">
-            <div className="bg-gradient-to-br from-primary/10 to-purple-50 rounded-xl p-4 text-center border border-primary/20">
-              <div className="text-2xl mb-2">🎁</div>
-              <p className="text-sm font-semibold text-dark">{t("benefits.earlyAccess")}</p>
+        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-12 border border-gray-100">
+          <div className="mb-6 sm:mb-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            <div className="bg-gradient-to-br from-primary/10 to-purple-50 rounded-xl p-3 sm:p-4 text-center border border-primary/20">
+              <div className="text-xl sm:text-2xl mb-1 sm:mb-2">🎁</div>
+              <p className="text-xs sm:text-sm font-semibold text-dark">{t("benefits.earlyAccess")}</p>
             </div>
-            <div className="bg-gradient-to-br from-primary/10 to-purple-50 rounded-xl p-4 text-center border border-primary/20">
-              <div className="text-2xl mb-2">💎</div>
-              <p className="text-sm font-semibold text-dark">{t("benefits.foundersClub")}</p>
+            <div className="bg-gradient-to-br from-primary/10 to-purple-50 rounded-xl p-3 sm:p-4 text-center border border-primary/20">
+              <div className="text-xl sm:text-2xl mb-1 sm:mb-2">💎</div>
+              <p className="text-xs sm:text-sm font-semibold text-dark">{t("benefits.foundersClub")}</p>
             </div>
-            <div className="bg-gradient-to-br from-primary/10 to-purple-50 rounded-xl p-4 text-center border border-primary/20">
-              <div className="text-2xl mb-2">🎯</div>
-              <p className="text-sm font-semibold text-dark">{t("benefits.shapeProduct")}</p>
+            <div className="bg-gradient-to-br from-primary/10 to-purple-50 rounded-xl p-3 sm:p-4 text-center border border-primary/20">
+              <div className="text-xl sm:text-2xl mb-1 sm:mb-2">🎯</div>
+              <p className="text-xs sm:text-sm font-semibold text-dark">{t("benefits.shapeProduct")}</p>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             {/* Error Message */}
             {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl">
-                <p className="text-sm">{error}</p>
+              <div className="bg-red-50 border border-red-200 text-red-700 px-3 py-2 sm:px-4 sm:py-3 rounded-xl">
+                <p className="text-xs sm:text-sm">{error}</p>
               </div>
             )}
 
             {/* Name */}
             <div>
-              <label htmlFor="name" className="block text-sm font-semibold text-dark mb-2">
+              <label htmlFor="name" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
                 {t("form.name")} {t("form.required")}
               </label>
               <input
@@ -172,14 +172,14 @@ export default function WaitlistForm() {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors"
+                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-sm sm:text-base min-h-[44px]"
                 placeholder={t("form.namePlaceholder")}
               />
             </div>
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-dark mb-2">
+              <label htmlFor="email" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
                 {t("form.email")} {t("form.required")}
               </label>
               <input
@@ -201,13 +201,13 @@ export default function WaitlistForm() {
                 }}
                 aria-invalid={showEmailError}
                 aria-describedby={showEmailError ? "email-error" : undefined}
-                className={`w-full px-4 py-3 rounded-xl border-2 focus:border-primary focus:outline-none transition-colors ${
+                className={`w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 focus:border-primary focus:outline-none transition-colors text-sm sm:text-base min-h-[44px] ${
                   showEmailError ? "border-red-400" : "border-gray-200"
                 }`}
                 placeholder={t("form.emailPlaceholder")}
               />
               {showEmailError && (
-                <p id="email-error" className="text-sm text-red-600 mt-2" role="alert">
+                <p id="email-error" className="text-xs sm:text-sm text-red-600 mt-2" role="alert">
                   {t("form.emailInvalid")}
                 </p>
               )}
@@ -215,7 +215,7 @@ export default function WaitlistForm() {
 
             {/* Telegram */}
             <div>
-              <label htmlFor="telegram" className="block text-sm font-semibold text-dark mb-2">
+              <label htmlFor="telegram" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
                 {t("form.telegram")} {t("form.required")}
               </label>
               <input
@@ -236,13 +236,13 @@ export default function WaitlistForm() {
                 }}
                 aria-invalid={showTelegramError}
                 aria-describedby={showTelegramError ? "telegram-error" : undefined}
-                className={`w-full px-4 py-3 rounded-xl border-2 focus:border-primary focus:outline-none transition-colors ${
+                className={`w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 focus:border-primary focus:outline-none transition-colors text-sm sm:text-base min-h-[44px] ${
                   showTelegramError ? "border-red-400" : "border-gray-200"
                 }`}
                 placeholder={t("form.telegramPlaceholder")}
               />
               {showTelegramError && (
-                <p id="telegram-error" className="text-sm text-red-600 mt-2" role="alert">
+                <p id="telegram-error" className="text-xs sm:text-sm text-red-600 mt-2" role="alert">
                   {t("form.telegramInvalid")}
                 </p>
               )}
@@ -250,7 +250,7 @@ export default function WaitlistForm() {
 
             {/* City */}
             <div>
-              <label htmlFor="city" className="block text-sm font-semibold text-dark mb-2">
+              <label htmlFor="city" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
                 {t("form.city")} {t("form.required")}
               </label>
               <input
@@ -260,14 +260,14 @@ export default function WaitlistForm() {
                 required
                 value={formData.city}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors"
+                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-sm sm:text-base min-h-[44px]"
                 placeholder={t("form.cityPlaceholder")}
               />
             </div>
 
             {/* Gender */}
             <div>
-              <label htmlFor="gender" className="block text-sm font-semibold text-dark mb-2">
+              <label htmlFor="gender" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
                 {t("form.gender")} {t("form.required")}
               </label>
               <select
@@ -276,7 +276,7 @@ export default function WaitlistForm() {
                 required
                 value={formData.gender}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white"
+                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white text-sm sm:text-base min-h-[44px]"
               >
                 <option value="">{t("form.genderPlaceholder")}</option>
                 <option value="female">{t("form.genderOptions.female")}</option>
@@ -288,7 +288,7 @@ export default function WaitlistForm() {
 
             {/* Age Range */}
             <div>
-              <label htmlFor="ageRange" className="block text-sm font-semibold text-dark mb-2">
+              <label htmlFor="ageRange" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
                 {t("form.ageRange")} {t("form.required")}
               </label>
               <select
@@ -297,7 +297,7 @@ export default function WaitlistForm() {
                 required
                 value={formData.ageRange}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white"
+                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white text-sm sm:text-base min-h-[44px]"
               >
                 <option value="">{t("form.ageRangePlaceholder")}</option>
                 <option value="18-24">{t("form.ageRangeOptions.18-24")}</option>
@@ -309,7 +309,7 @@ export default function WaitlistForm() {
 
             {/* MVP Tester */}
             <div>
-              <label htmlFor="mvpTester" className="block text-sm font-semibold text-dark mb-2">
+              <label htmlFor="mvpTester" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
                 {t("form.mvpTester")} {t("form.required")}
               </label>
               <select
@@ -318,7 +318,7 @@ export default function WaitlistForm() {
                 required
                 value={formData.mvpTester}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white"
+                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white text-sm sm:text-base min-h-[44px]"
               >
                 <option value="">{t("form.mvpTesterPlaceholder")}</option>
                 <option value="yes">{t("form.mvpTesterOptions.yes")}</option>
@@ -328,7 +328,7 @@ export default function WaitlistForm() {
 
             {/* Wardrobe Size */}
             <div>
-              <label htmlFor="wardrobeSize" className="block text-sm font-semibold text-dark mb-2">
+              <label htmlFor="wardrobeSize" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
                 {t("form.wardrobeSize")} {t("form.required")}
               </label>
               <select
@@ -337,7 +337,7 @@ export default function WaitlistForm() {
                 required
                 value={formData.wardrobeSize}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white"
+                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white text-sm sm:text-base min-h-[44px]"
               >
                 <option value="">{t("form.wardrobeSizePlaceholder")}</option>
                 <option value="0-50">{t("form.wardrobeSizeOptions.0-50")}</option>
@@ -350,7 +350,7 @@ export default function WaitlistForm() {
 
             {/* Main Problem */}
             <div>
-              <label htmlFor="mainProblem" className="block text-sm font-semibold text-dark mb-2">
+              <label htmlFor="mainProblem" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
                 {t("form.mainProblem")} {t("form.required")}
               </label>
               <select
@@ -359,7 +359,7 @@ export default function WaitlistForm() {
                 required
                 value={formData.mainProblem}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white"
+                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white text-sm sm:text-base min-h-[44px]"
               >
                 <option value="">{t("form.mainProblemPlaceholder")}</option>
                 <option value="nothing-to-wear">{t("form.mainProblemOptions.nothingToWear")}</option>
@@ -372,7 +372,7 @@ export default function WaitlistForm() {
 
             {/* Social Media (Optional) */}
             <div>
-              <label htmlFor="socialMedia" className="block text-sm font-semibold text-dark mb-2">
+              <label htmlFor="socialMedia" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
                 {t("form.socialMedia")} <span className="text-gray-400">{t("form.socialMediaOptional")}</span>
               </label>
               <input
@@ -381,7 +381,7 @@ export default function WaitlistForm() {
                 name="socialMedia"
                 value={formData.socialMedia}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors"
+                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-sm sm:text-base min-h-[44px]"
                 placeholder={t("form.socialMediaPlaceholder")}
               />
             </div>
@@ -390,11 +390,11 @@ export default function WaitlistForm() {
             <button
               type="submit"
               disabled={isSubmitting || !canSubmit}
-              className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary-dark hover:to-primary text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary-dark hover:to-primary text-white font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 text-sm sm:text-base min-h-[44px]"
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center gap-2">
-                  <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <svg className="animate-spin h-4 w-4 sm:h-5 sm:w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
@@ -405,19 +405,19 @@ export default function WaitlistForm() {
               )}
             </button>
 
-            <p className="text-xs text-gray-500 text-center mt-4">
+            <p className="text-xs text-gray-500 text-center mt-3 sm:mt-4">
               {t("form.privacy")}
             </p>
           </form>
         </div>
 
-        <div className="mt-12 text-center">
-          <p className="text-gray-600 mb-4">{t("benefitsList.title")}</p>
-          <div className="flex flex-wrap justify-center gap-3">
+        <div className="mt-8 sm:mt-12 text-center">
+          <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 px-4">{t("benefitsList.title")}</p>
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
             {[0, 1, 2, 3, 4].map((index) => (
               <span
                 key={index}
-                className="bg-white border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-700"
+                className="bg-white border border-gray-200 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-gray-700"
               >
                 ✓ {t(`benefitsList.items.${index}`)}
               </span>

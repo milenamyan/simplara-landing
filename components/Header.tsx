@@ -44,15 +44,15 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <nav className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
           <Link
             href="/"
             onClick={goToHome}
-            className="flex items-center gap-2"
+            className="flex items-center gap-1.5 sm:gap-2 min-h-[44px]"
           >
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center flex-shrink-0">
               <Image
                 src="/assets/logo.png"
                 alt="SIMPLARA"
@@ -61,7 +61,7 @@ export default function Header() {
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="text-xl font-bold text-dark">SIMPLARA</span>
+            <span className="text-lg sm:text-xl font-bold text-dark">SIMPLARA</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -160,25 +160,27 @@ export default function Header() {
 
             <button
               onClick={() => scrollToSection("waitlist")}
-              className="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-2 rounded-full transition-all duration-200 shadow-md hover:shadow-lg"
+              className="bg-primary hover:bg-primary-dark text-white font-semibold px-5 py-2 rounded-full transition-all duration-200 shadow-md hover:shadow-lg text-sm lg:text-base min-h-[44px]"
             >
               {t("joinWaitlist")}
             </button>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-3">
+          <div className="md:hidden flex items-center gap-2">
             {/* Mobile Language Switcher */}
             <button
               onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-              className="text-sm font-medium text-gray-700 px-2 py-1 rounded-lg hover:bg-gray-100 transition-colors"
+              className="text-xs sm:text-sm font-medium text-gray-700 px-2 py-1.5 rounded-lg hover:bg-gray-100 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label="Change language"
             >
               {locale.toUpperCase()}
             </button>
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700 hover:text-primary"
+              className="text-gray-700 hover:text-primary min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
               <svg
                 className="w-6 h-6"
@@ -209,28 +211,28 @@ export default function Header() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-100">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
               <button
                 onClick={() => scrollToSection("features")}
-                className="text-left text-gray-700 hover:text-primary font-medium transition-colors"
+                className="text-left text-gray-700 hover:text-primary font-medium transition-colors py-2 min-h-[44px]"
               >
                 {t("features")}
               </button>
               <button
                 onClick={() => scrollToSection("how-it-works")}
-                className="text-left text-gray-700 hover:text-primary font-medium transition-colors"
+                className="text-left text-gray-700 hover:text-primary font-medium transition-colors py-2 min-h-[44px]"
               >
                 {t("howItWorks")}
               </button>
               <button
                 onClick={() => scrollToSection("faq")}
-                className="text-left text-gray-700 hover:text-primary font-medium transition-colors"
+                className="text-left text-gray-700 hover:text-primary font-medium transition-colors py-2 min-h-[44px]"
               >
                 {t("faq")}
               </button>
               <button
                 onClick={() => scrollToSection("waitlist")}
-                className="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-2 rounded-full transition-all duration-200 shadow-md text-center"
+                className="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-full transition-all duration-200 shadow-md text-center mt-2 min-h-[44px]"
               >
                 {t("joinWaitlist")}
               </button>
