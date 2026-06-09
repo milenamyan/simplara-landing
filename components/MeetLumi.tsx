@@ -55,7 +55,7 @@ export default function MeetLumi() {
               </div>
 
               {/* Floating speech bubble */}
-              <div className="absolute top-4 right-4 sm:top-8 sm:right-8 bg-white rounded-xl sm:rounded-2xl shadow-xl p-3 sm:p-4 max-w-[160px] sm:max-w-xs animate-bounce">
+              <div className="absolute top-4 right-4 sm:top-8 sm:right-8 bg-white rounded-xl sm:rounded-2xl shadow-xl p-3 sm:p-4 max-w-[160px] sm:max-w-xs animate-bounce z-50">
                 <p className="text-xs sm:text-sm font-medium text-dark">
                   {t("speechBubble")}
                 </p>
