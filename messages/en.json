@@ -1,0 +1,377 @@
+{
+  "metadata": {
+    "title": "SIMPLARA - AI Wardrobe Assistant with LUMI",
+    "description": "No more 'I have nothing to wear'. SIMPLARA is an AI wardrobe with LUMI, an assistant that builds outfits from your real clothes.",
+    "keywords": "AI wardrobe, digital closet, outfit planner, fashion assistant, LUMI, style app",
+    "ogTitle": "SIMPLARA - AI Wardrobe Assistant",
+    "ogDescription": "Build stylish outfits from clothes you already own with AI assistant LUMI"
+  },
+  "hero": {
+    "badge": "Early Access Available",
+    "title": "No more ",
+    "titleHighlight": "\"I have nothing to wear\"",
+    "description": "SIMPLARA is an AI wardrobe with LUMI, an assistant that builds outfits from your real clothes based on weather, occasion and mood.",
+    "joinWaitlist": "Join the Waitlist",
+    "becomeTester": "Become an MVP Tester",
+    "forMenWomen": "For men & women",
+    "freeToJoin": "Free to join",
+    "lumiQuestion": "LUMI, I have nothing to wear",
+    "todaysOutfit": "Today's Outfit",
+    "tomorrow": "Tomorrow"
+  },
+  "problem": {
+    "title": "Full closet. ",
+    "titleHighlight": "No outfits.",
+    "subtitle": "Sound familiar? You're not alone. Most people struggle with these everyday wardrobe challenges:",
+    "problems": [
+      {
+        "title": "Too many clothes",
+        "description": "Closet is full, but you keep wearing the same 5 outfits"
+      },
+      {
+        "title": "Morning stress",
+        "description": "Wasting time every morning trying to decide what to wear"
+      },
+      {
+        "title": "Random shopping",
+        "description": "Buying new items that don't match anything you already own"
+      },
+      {
+        "title": "Forgotten items",
+        "description": "Many clothes remain unused and hidden in the back of your closet"
+      }
+    ],
+    "cta": "It's time to turn your wardrobe into an ",
+    "ctaHighlight": "intelligent system",
+    "ctaSubtitle": "Stop letting good clothes go to waste. Start building outfits with confidence."
+  },
+  "solution": {
+    "title": "Upload your wardrobe — get ",
+    "titleHighlight": "ready-to-wear outfits",
+    "description": "SIMPLARA turns your clothing into a digital wardrobe. AI analyzes everything you own and suggests complete outfits based on:",
+    "items": [
+      "Categories, colors & style",
+      "Weather & seasonality",
+      "Occasion & lifestyle",
+      "Item compatibility",
+      "Your preferences & feedback"
+    ],
+    "cta": "LUMI suggests outfits for every day, for the week, or for a specific occasion — all from clothes you already own.",
+    "digitalWardrobe": "Your Digital Wardrobe",
+    "itemsCount": "items",
+    "categories": {
+      "all": "All",
+      "tops": "Tops",
+      "bottoms": "Bottoms",
+      "shoes": "Shoes",
+      "accessories": "Accessories"
+    },
+    "todaysWeather": "Today's Weather",
+    "weatherCondition": "Sunny",
+    "getOutfit": "Get outfit →",
+    "aiPowered": "AI Powered ✨"
+  },
+  "howItWorks": {
+    "title": "How it ",
+    "titleHighlight": "works",
+    "subtitle": "Get started in minutes. SIMPLARA learns from your wardrobe and gets smarter over time.",
+    "steps": [
+      {
+        "title": "Upload your clothes",
+        "description": "Photograph your clothing items or add them to your digital wardrobe"
+      },
+      {
+        "title": "AI analyzes everything",
+        "description": "AI classifies clothes by type, color, season, style and purpose"
+      },
+      {
+        "title": "Get outfit suggestions",
+        "description": "LUMI suggests complete outfits from your existing wardrobe"
+      },
+      {
+        "title": "Rate & improve",
+        "description": "Rate recommendations and save successful outfits to improve AI accuracy"
+      },
+      {
+        "title": "Discover insights",
+        "description": "Understand what you wear often, what's forgotten, and what's truly missing"
+      }
+    ],
+    "cta": "The more you use SIMPLARA, the better it understands your style",
+    "ctaSubtitle": "AI learns from your feedback, weather patterns, and usage scenarios to provide increasingly accurate suggestions"
+  },
+  "features": {
+    "title": "Everything you need for a ",
+    "titleHighlight": "smarter wardrobe",
+    "subtitle": "SIMPLARA is more than just an outfit generator. It's a complete fashion-tech ecosystem.",
+    "features": [
+      {
+        "title": "AI Outfit Generation",
+        "description": "Ready-to-wear combinations from your real clothes"
+      },
+      {
+        "title": "Wardrobe in Your Phone",
+        "description": "All items in one place: categories, colors, seasons, styles"
+      },
+      {
+        "title": "Weather-Based Outfits",
+        "description": "LUMI considers temperature and weather context"
+      },
+      {
+        "title": "Weekly Capsules",
+        "description": "Several outfits planned ahead so you don't think every morning"
+      },
+      {
+        "title": "Wardrobe Analytics",
+        "description": "Understand what's worn often, what's forgotten and what doesn't match"
+      },
+      {
+        "title": "Wardrobe Classification",
+        "description": "Paid service where experts help organize and upload your wardrobe"
+      },
+      {
+        "title": "LUMI Room",
+        "description": "A game layer for emotional attachment and retention mechanics"
+      },
+      {
+        "title": "Outfit Battles",
+        "description": "Fashion battles, voting, internal currency and community engagement"
+      }
+    ],
+    "comingSoon": "Coming Soon",
+    "benefits": [
+      {
+        "title": "Your Data is Private",
+        "description": "Your wardrobe stays secure. We never share your personal data."
+      },
+      {
+        "title": "Sustainable Fashion",
+        "description": "Wear what you own more. Buy less. Reduce fashion waste."
+      },
+      {
+        "title": "Save Money",
+        "description": "Stop buying clothes you don't need. Maximize what you already have."
+      }
+    ]
+  },
+  "meetLumi": {
+    "title": "Meet ",
+    "titleHighlight": "LUMI",
+    "description": "LUMI is your AI cat assistant that helps create outfits and turns wardrobe management into a daily ritual you'll actually enjoy.",
+    "speechBubble": "Let me help you rediscover your wardrobe!",
+    "qualities": [
+      {
+        "title": "Personal & Friendly",
+        "description": "Chat with LUMI like a friend. Get outfit suggestions that feel personal, not generic."
+      },
+      {
+        "title": "No Judgment",
+        "description": "LUMI doesn't judge your body, appearance or style choices. It helps you make better use of what you own."
+      },
+      {
+        "title": "Gets Smarter Over Time",
+        "description": "The more you interact with LUMI, the better it understands your preferences and lifestyle."
+      },
+      {
+        "title": "Fun & Engaging",
+        "description": "LUMI Room, outfit battles, and rewards make fashion fun and interactive."
+      }
+    ],
+    "philosophy": "Brand philosophy",
+    "philosophyQuote": "\"LUMI does not set beauty standards. LUMI helps highlight your individuality.\"",
+    "comparison": {
+      "title": "Why LUMI works better than traditional AI stylists",
+      "typical": {
+        "title": "Typical AI Stylist",
+        "items": [
+          "Generic advice & images",
+          "One-time recommendations",
+          "Doesn't know your closet",
+          "No emotional connection"
+        ]
+      },
+      "lumi": {
+        "title": "LUMI",
+        "items": [
+          "Works with YOUR real clothes",
+          "Daily habit & retention",
+          "Complete wardrobe system",
+          "Emotional AI companion"
+        ]
+      },
+      "future": {
+        "title": "Future Features",
+        "items": [
+          "LUMI Room & gamification",
+          "Outfit battles & community",
+          "Smart purchase suggestions",
+          "Fashion-commerce platform"
+        ]
+      }
+    }
+  },
+  "waitlist": {
+    "title": "Become one of the ",
+    "titleHighlight": "first SIMPLARA users",
+    "subtitle": "Join our waitlist for early access to SIMPLARA. Help shape the future of AI wardrobe technology and get exclusive benefits as a founding member.",
+    "benefits": {
+      "earlyAccess": "Early Access",
+      "foundersClub": "Founders Club",
+      "shapeProduct": "Shape the Product"
+    },
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Enter your name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "emailInvalid": "Please enter a valid email address.",
+      "telegram": "Telegram",
+      "telegramPlaceholder": "@username",
+      "telegramInvalid": "Please enter a valid Telegram username (e.g. @username).",
+      "city": "City",
+      "cityPlaceholder": "Your city",
+      "gender": "Gender",
+      "genderPlaceholder": "Select gender",
+      "genderOptions": {
+        "female": "Female",
+        "male": "Male",
+        "nonBinary": "Non-binary",
+        "preferNotToSay": "Prefer not to say"
+      },
+      "ageRange": "Age Range",
+      "ageRangePlaceholder": "Select age range",
+      "ageRangeOptions": {
+        "18-24": "18-24",
+        "25-34": "25-34",
+        "35-44": "35-44",
+        "45+": "45+"
+      },
+      "mvpTester": "Would you like to participate in MVP testing?",
+      "mvpTesterPlaceholder": "Select an option",
+      "mvpTesterOptions": {
+        "yes": "Yes, I want to test the MVP",
+        "no": "No, just early access"
+      },
+      "wardrobeSize": "Approximate number of wardrobe items",
+      "wardrobeSizePlaceholder": "Select range",
+      "wardrobeSizeOptions": {
+        "0-50": "0-50 items",
+        "51-100": "51-100 items",
+        "101-200": "101-200 items",
+        "201-300": "201-300 items",
+        "300+": "300+ items"
+      },
+      "mainProblem": "Main current wardrobe problem",
+      "mainProblemPlaceholder": "Select main problem",
+      "mainProblemOptions": {
+        "nothingToWear": "Nothing to wear",
+        "unusedItems": "Too many unused items",
+        "noCombinations": "Don't know how to combine clothes",
+        "wantOrganize": "Want to organize my wardrobe",
+        "other": "Other"
+      },
+      "socialMedia": "Instagram or TikTok",
+      "socialMediaOptional": "(optional)",
+      "socialMediaPlaceholder": "@yourhandle",
+      "submit": "Join the Waitlist",
+      "submitting": "Submitting...",
+      "required": "*",
+      "privacy": "By joining, you agree to receive updates about SIMPLARA. We respect your privacy and won't spam you."
+    },
+    "success": {
+      "title": "You're on the SIMPLARA early access list!",
+      "description": "Soon LUMI will help you rediscover your wardrobe. We'll reach out with exclusive early access and MVP testing opportunities.",
+      "submitAnother": "Submit another response"
+    },
+    "benefitsList": {
+      "title": "Benefits for early users:",
+      "items": [
+        "Special early access terms",
+        "Private product updates",
+        "Founders Club membership",
+        "Early access to LUMI features",
+        "Influence product development"
+      ]
+    },
+    "error": "Failed to submit form. Please try again or contact us directly."
+  },
+  "faq": {
+    "title": "Frequently ",
+    "titleHighlight": "Asked Questions",
+    "subtitle": "Everything you need to know about SIMPLARA and LUMI",
+    "questions": [
+      {
+        "question": "Do I need to buy new clothes?",
+        "answer": "No. SIMPLARA first helps you use what you already have. The entire purpose is to help you rediscover and maximize your existing wardrobe before buying anything new."
+      },
+      {
+        "question": "Is it only for women?",
+        "answer": "No. SIMPLARA is for men and women who want to look more stylish and build outfits faster. Our AI works equally well for all clothing types and styles."
+      },
+      {
+        "question": "How does the app understand my clothes?",
+        "answer": "You upload clothing photos, and our AI classifies items by category, color, style, seasonality and other parameters. The more items you add, the better LUMI understands your wardrobe and can suggest combinations."
+      },
+      {
+        "question": "Is LUMI a stylist?",
+        "answer": "LUMI is an AI wardrobe assistant. It helps create outfits based on your existing wardrobe, weather, and preferences, but does not judge your appearance or try to change your personal style."
+      },
+      {
+        "question": "Can I get help from a real person?",
+        "answer": "Yes. A separate wardrobe classification service with expert stylists is planned. They can help you properly organize and upload your wardrobe for the best AI recommendations."
+      },
+      {
+        "question": "When is the launch?",
+        "answer": "The product is preparing for MVP testing. Early users can join the waitlist now to get priority access when we launch."
+      },
+      {
+        "question": "Will SIMPLARA be free?",
+        "answer": "We're planning a free tier with core features and premium subscriptions for advanced features like wardrobe classification, LUMI Room customization, and expert consultations."
+      },
+      {
+        "question": "How is my data protected?",
+        "answer": "Your wardrobe data is private and secure. We never share your personal information or clothing items with third parties. You have full control over your data."
+      },
+      {
+        "question": "What makes SIMPLARA different from other fashion apps?",
+        "answer": "Unlike generic AI stylists that show random outfit ideas, SIMPLARA works exclusively with YOUR real clothes. It's a complete wardrobe ecosystem with AI, gamification, community features, and smart recommendations."
+      },
+      {
+        "question": "Can I use SIMPLARA for special occasions?",
+        "answer": "Absolutely! LUMI can suggest outfits for work, dates, parties, travel, and any special occasion. Just specify the context and LUMI will find the perfect combination from your wardrobe."
+      }
+    ],
+    "stillQuestions": "Still have questions?",
+    "contactUs": "We're here to help! Reach out to us and we'll get back to you as soon as possible.",
+    "contactButton": "Contact Us"
+  },
+  "footer": {
+    "tagline": "AI Wardrobe Assistant",
+    "description": "Turn your wardrobe into an intelligent system. Build stylish outfits from clothes you already own with AI assistant LUMI.",
+    "product": "Product",
+    "company": "Company",
+    "links": {
+      "features": "Features",
+      "howItWorks": "How It Works",
+      "pricing": "Pricing",
+      "roadmap": "Roadmap",
+      "aboutUs": "About Us",
+      "blog": "Blog",
+      "careers": "Careers",
+      "contact": "Contact"
+    },
+    "copyright": "© {year} SIMPLARA. All rights reserved.",
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy"
+    },
+    "madeWith": "Made with ❤️ by the SIMPLARA team"
+  },
+  "header": {
+    "features": "Features",
+    "howItWorks": "How It Works",
+    "faq": "FAQ",
+    "joinWaitlist": "Join Waitlist"
+  }
+}
