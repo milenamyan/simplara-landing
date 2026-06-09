@@ -127,7 +127,7 @@ export default function MeetLumi() {
               </ul>
             </div>
 
-            <div className="bg-gradient-to-br from-primary to-indigo-600 p-6 rounded-2xl shadow-xl text-white transform scale-105">
+            <div className="bg-gradient-to-br from-primary to-primary/90 p-6 rounded-2xl shadow-xl text-white transform scale-105">
               <div className="text-3xl mb-3">✨</div>
               <h4 className="font-semibold mb-2">{t("comparison.lumi.title")}</h4>
               <ul className="text-sm space-y-2 text-left">

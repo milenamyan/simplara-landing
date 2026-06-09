@@ -60,7 +60,7 @@ export default function HowItWorks() {
                 {/* Step card */}
                 <div className="bg-white rounded-2xl p-6 border-2 border-gray-100 hover:border-primary/50 hover:shadow-lg transition-all duration-300 h-full">
                   {/* Number badge */}
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-indigo-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-4 mx-auto shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/90 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-4 mx-auto shadow-lg">
                     {step.number}
                   </div>
 

@@ -81,7 +81,7 @@ export default function Solution() {
               </div>
 
               {/* Floating AI badge */}
-              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-primary to-indigo-600 text-white px-6 py-3 rounded-full shadow-xl font-semibold text-sm">
+              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-primary to-primary/90 text-white px-6 py-3 rounded-full shadow-xl font-semibold text-sm">
                 {t("aiPowered")}
               </div>
             </div>

@@ -34,7 +34,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button
                 onClick={scrollToWaitlist}
-                className="bg-primary hover:bg-indigo-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                className="bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-4 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 {t("joinWaitlist")}
               </button>
@@ -77,7 +77,7 @@ export default function Hero() {
                   {/* Outfit cards placeholder */}
                   <div className="flex-1 flex flex-col gap-4">
                     <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-4 border border-indigo-200">
-                      <div className="text-xs font-semibold text-indigo-600 mb-2">{t("todaysOutfit")}</div>
+                      <div className="text-xs font-semibold text-primary mb-2">{t("todaysOutfit")}</div>
                       <div className="grid grid-cols-3 gap-2">
                         <div className="aspect-square bg-white rounded-lg shadow-sm"></div>
                         <div className="aspect-square bg-white rounded-lg shadow-sm"></div>

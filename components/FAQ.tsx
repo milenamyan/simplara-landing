@@ -84,7 +84,7 @@ export default function FAQ() {
           </p>
           <a
             href="mailto:hello@simplara.app"
-            className="inline-block bg-primary hover:bg-indigo-700 text-white font-semibold px-8 py-3 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl"
+            className="inline-block bg-primary hover:bg-primary/160 text-white font-semibold px-8 py-3 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl"
           >
             {t("contactButton")}
           </a>

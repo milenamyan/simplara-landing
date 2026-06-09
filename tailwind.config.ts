@@ -9,9 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#6366f1", // Indigo for CTAs
+        primary: "#7f4f45", // Indigo for CTAs
         secondary: "#f5f3ff", // Soft pastel background
-        accent: "#fef08a", // Soft yellow accent
+        accent: "#d39b8c", // Soft yellow accent
         dark: "#1a1a1a",
       },
       fontFamily: {

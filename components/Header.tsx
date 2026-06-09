@@ -148,7 +148,7 @@ export default function Header() {
 
             <button
               onClick={() => scrollToSection("waitlist")}
-              className="bg-primary hover:bg-indigo-700 text-white font-semibold px-6 py-2 rounded-full transition-all duration-200 shadow-md hover:shadow-lg"
+              className="bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-2 rounded-full transition-all duration-200 shadow-md hover:shadow-lg"
             >
               {t("joinWaitlist")}
             </button>
@@ -218,7 +218,7 @@ export default function Header() {
               </button>
               <button
                 onClick={() => scrollToSection("waitlist")}
-                className="bg-primary hover:bg-indigo-700 text-white font-semibold px-6 py-2 rounded-full transition-all duration-200 shadow-md text-center"
+                className="bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-2 rounded-full transition-all duration-200 shadow-md text-center"
               >
                 {t("joinWaitlist")}
               </button>

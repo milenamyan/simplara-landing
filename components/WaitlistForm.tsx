@@ -102,7 +102,7 @@ export default function WaitlistForm() {
 
   if (isSubmitted) {
     return (
-      <section id="waitlist" className="py-16 lg:py-24 bg-gradient-to-b from-primary to-indigo-600">
+      <section id="waitlist" className="py-16 lg:py-24 bg-gradient-to-b from-primary to-primary/90">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-white rounded-3xl p-12 shadow-2xl">
             <div className="text-6xl mb-6">🎉</div>
@@ -390,7 +390,7 @@ export default function WaitlistForm() {
             <button
               type="submit"
               disabled={isSubmitting || !canSubmit}
-              className="w-full bg-gradient-to-r from-primary to-indigo-600 hover:from-indigo-600 hover:to-primary text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center gap-2">
