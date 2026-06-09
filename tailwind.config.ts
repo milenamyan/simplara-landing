@@ -9,7 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#7f4f45", // Indigo for CTAs
+        primary: "#7f4f45",
+        "primary-dark": "#6a4239",
         secondary: "#f5f3ff", // Soft pastel background
         accent: "#d39b8c", // Soft yellow accent
         dark: "#1a1a1a",
