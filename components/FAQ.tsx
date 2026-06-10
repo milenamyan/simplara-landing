@@ -84,7 +84,7 @@ export default function FAQ() {
           </p>
           <button
             type="button"
-            className="inline-block bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-3 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl cursor-default"
+            className="bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-3 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95 min-h-[44px]"
           >
             {t("contactButton")}
           </button>
