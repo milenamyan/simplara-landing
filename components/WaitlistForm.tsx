@@ -102,16 +102,16 @@ export default function WaitlistForm() {
 
   if (isSubmitted) {
     return (
-      <section id="waitlist" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-primary to-primary/90">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-8 sm:p-12 shadow-2xl">
-            <div className="text-5xl sm:text-6xl mb-4 sm:mb-6">🎉</div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-3 sm:mb-4">
-              {t("success.title")}
-            </h2>
-            <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8">
-              {t("success.description")}
-            </p>
+    <section id="waitlist" className="py-8 sm:py-10 lg:py-14 bg-gradient-to-b from-primary to-primary/90">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl">
+          <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">🎉</div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-2 sm:mb-3">
+            {t("success.title")}
+          </h2>
+          <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6">
+            {t("success.description")}
+          </p>
             <button
               onClick={() => setIsSubmitted(false)}
               className="text-primary hover:text-primary/80 font-semibold min-h-[44px]"
@@ -125,10 +125,10 @@ export default function WaitlistForm() {
   }
 
   return (
-    <section id="waitlist" className="py-12 sm:py-16 lg:py-24 bg-secondary">
+    <section id="waitlist" className="py-8 sm:py-10 lg:py-14 bg-secondary">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-3 sm:mb-4 px-2">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-2 sm:mb-3 px-2">
             {t("title")}<span className="text-primary">{t("titleHighlight")}</span>
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
@@ -136,8 +136,8 @@ export default function WaitlistForm() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-12 border border-gray-100">
-          <div className="mb-6 sm:mb-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-gray-100">
+          <div className="mb-4 sm:mb-6 grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
             <div className="bg-gradient-to-br from-primary/10 to-purple-50 rounded-xl p-3 sm:p-4 text-center border border-primary/20">
               <div className="text-xl sm:text-2xl mb-1 sm:mb-2">🎁</div>
               <p className="text-xs sm:text-sm font-semibold text-dark">{t("benefits.earlyAccess")}</p>
@@ -152,7 +152,7 @@ export default function WaitlistForm() {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
             {/* Error Message */}
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-700 px-3 py-2 sm:px-4 sm:py-3 rounded-xl">
@@ -162,7 +162,7 @@ export default function WaitlistForm() {
 
             {/* Name */}
             <div>
-              <label htmlFor="name" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
+              <label htmlFor="name" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
                 {t("form.name")} {t("form.required")}
               </label>
               <input
@@ -179,7 +179,7 @@ export default function WaitlistForm() {
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
+              <label htmlFor="email" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
                 {t("form.email")} {t("form.required")}
               </label>
               <input
@@ -215,7 +215,7 @@ export default function WaitlistForm() {
 
             {/* Telegram */}
             <div>
-              <label htmlFor="telegram" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
+              <label htmlFor="telegram" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
                 {t("form.telegram")} {t("form.required")}
               </label>
               <input
@@ -250,7 +250,7 @@ export default function WaitlistForm() {
 
             {/* City */}
             <div>
-              <label htmlFor="city" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
+              <label htmlFor="city" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
                 {t("form.city")} {t("form.required")}
               </label>
               <input
@@ -267,7 +267,7 @@ export default function WaitlistForm() {
 
             {/* Gender */}
             <div>
-              <label htmlFor="gender" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
+              <label htmlFor="gender" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
                 {t("form.gender")} {t("form.required")}
               </label>
               <select
@@ -288,7 +288,7 @@ export default function WaitlistForm() {
 
             {/* Age Range */}
             <div>
-              <label htmlFor="ageRange" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
+              <label htmlFor="ageRange" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
                 {t("form.ageRange")} {t("form.required")}
               </label>
               <select
@@ -309,7 +309,7 @@ export default function WaitlistForm() {
 
             {/* MVP Tester */}
             <div>
-              <label htmlFor="mvpTester" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
+              <label htmlFor="mvpTester" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
                 {t("form.mvpTester")} {t("form.required")}
               </label>
               <select
@@ -328,7 +328,7 @@ export default function WaitlistForm() {
 
             {/* Wardrobe Size */}
             <div>
-              <label htmlFor="wardrobeSize" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
+              <label htmlFor="wardrobeSize" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
                 {t("form.wardrobeSize")} {t("form.required")}
               </label>
               <select
@@ -350,7 +350,7 @@ export default function WaitlistForm() {
 
             {/* Main Problem */}
             <div>
-              <label htmlFor="mainProblem" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
+              <label htmlFor="mainProblem" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
                 {t("form.mainProblem")} {t("form.required")}
               </label>
               <select
@@ -372,7 +372,7 @@ export default function WaitlistForm() {
 
             {/* Social Media (Optional) */}
             <div>
-              <label htmlFor="socialMedia" className="block text-xs sm:text-sm font-semibold text-dark mb-1.5 sm:mb-2">
+              <label htmlFor="socialMedia" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
                 {t("form.socialMedia")} <span className="text-gray-400">{t("form.socialMediaOptional")}</span>
               </label>
               <input
@@ -411,9 +411,9 @@ export default function WaitlistForm() {
           </form>
         </div>
 
-        <div className="mt-8 sm:mt-12 text-center">
-          <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 px-4">{t("benefitsList.title")}</p>
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+        <div className="mt-6 sm:mt-8 text-center">
+          <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-3 px-4">{t("benefitsList.title")}</p>
+          <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
             {[0, 1, 2, 3, 4].map((index) => (
               <span
                 key={index}

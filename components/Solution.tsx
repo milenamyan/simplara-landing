@@ -22,22 +22,22 @@ export default function Solution() {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-secondary">
+    <section className="py-8 sm:py-10 lg:py-14 bg-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 items-center">
           {/* Left: Visual */}
           <div className="order-2 lg:order-1">
             <div className="relative">
               {/* Digital wardrobe visualization placeholder */}
-              <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 lg:p-8">
-                <div className="mb-4 sm:mb-6">
-                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-3 sm:p-4 lg:p-6">
+                <div className="mb-3 sm:mb-4">
+                  <div className="flex items-center justify-between mb-2 sm:mb-3">
                     <h3 className="text-base sm:text-lg font-semibold text-dark">{t("digitalWardrobe")}</h3>
                     <div className="text-xs sm:text-sm text-gray-500">124 {t("itemsCount")}</div>
                   </div>
                   
                   {/* Category tabs */}
-                  <div className="flex gap-2 mb-4 sm:mb-6 overflow-x-auto pb-2 scrollbar-hide">
+                  <div className="flex gap-2 mb-3 sm:mb-4 overflow-x-auto pb-2 scrollbar-hide">
                     {categories.map((cat, i) => (
                       <button
                         key={cat}
@@ -53,7 +53,7 @@ export default function Solution() {
                   </div>
 
                   {/* Clothing grid */}
-                  <div className="grid grid-cols-3 gap-2 sm:gap-4">
+                  <div className="grid grid-cols-3 gap-1.5 sm:gap-3">
                     {Array.from({ length: 9 }).map((_, i) => (
                       <div
                         key={i}
@@ -89,15 +89,15 @@ export default function Solution() {
 
           {/* Right: Content */}
           <div className="order-1 lg:order-2">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4 sm:mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-3 sm:mb-4">
               {t("title")}<span className="text-primary">{t("titleHighlight")}</span>
             </h2>
             
-            <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8">
+            <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6">
               {t("description")}
             </p>
 
-            <div className="space-y-3 sm:space-y-4">
+            <div className="space-y-2 sm:space-y-3">
               {items.map((item, index) => (
                 <div key={index} className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-xl border border-gray-200 hover:border-primary/50 transition-colors">
                   <div className="text-2xl sm:text-3xl flex-shrink-0">{item.icon}</div>
@@ -106,7 +106,7 @@ export default function Solution() {
               ))}
             </div>
 
-            <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-gradient-to-br from-primary/10 to-secondary rounded-xl sm:rounded-2xl border-2 border-primary/20">
+            <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-gradient-to-br from-primary/10 to-secondary rounded-xl sm:rounded-2xl border-2 border-primary/20">
               <p className="text-base sm:text-lg font-semibold text-dark">
                 {t("cta")}
               </p>

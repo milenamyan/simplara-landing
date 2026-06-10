@@ -8,13 +8,13 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black text-white py-10 sm:py-12 lg:py-16">
+    <footer className="bg-gradient-to-b from-gray-900 to-black text-white py-8 sm:py-10 lg:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8 mb-10 sm:mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-6 mb-8 sm:mb-10">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0">
+            <div className="flex items-center gap-2 sm:gap-2.5 mb-2 sm:mb-3">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0">
                 <Image 
                   src="/assets/logo.png" 
                   alt="SIMPLARA Logo" 
@@ -28,10 +28,10 @@ export default function Footer() {
                 <p className="text-xs sm:text-sm text-gray-400">{t("tagline")}</p>
               </div>
             </div>
-            <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6 max-w-md">
+            <p className="text-sm sm:text-base text-gray-400 mb-3 sm:mb-4 max-w-md">
               {t("description")}
             </p>
-            <div className="flex gap-3 sm:gap-4">
+            <div className="flex gap-2 sm:gap-3">
               <a
                 href="#"
                 className="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-colors min-h-[44px] min-w-[44px]"
@@ -65,8 +65,8 @@ export default function Footer() {
 
           {/* Product Column */}
           <div>
-            <h4 className="font-semibold text-base sm:text-lg mb-3 sm:mb-4">{t("product")}</h4>
-            <ul className="space-y-2 sm:space-y-3">
+            <h4 className="font-semibold text-base sm:text-lg mb-2 sm:mb-3">{t("product")}</h4>
+            <ul className="space-y-1.5 sm:space-y-2">
               <li>
                 <a href="#" className="text-sm sm:text-base text-gray-400 hover:text-primary transition-colors inline-block min-h-[44px] flex items-center">
                   {t("links.features")}
@@ -92,8 +92,8 @@ export default function Footer() {
 
           {/* Company Column */}
           <div>
-            <h4 className="font-semibold text-base sm:text-lg mb-3 sm:mb-4">{t("company")}</h4>
-            <ul className="space-y-2 sm:space-y-3">
+            <h4 className="font-semibold text-base sm:text-lg mb-2 sm:mb-3">{t("company")}</h4>
+            <ul className="space-y-1.5 sm:space-y-2">
               <li>
                 <a href="#" className="text-sm sm:text-base text-gray-400 hover:text-primary transition-colors inline-block min-h-[44px] flex items-center">
                   {t("links.aboutUs")}
@@ -119,12 +119,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 sm:pt-8 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="pt-5 sm:pt-6 border-t border-gray-800">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3">
             <p className="text-gray-400 text-xs sm:text-sm text-center md:text-left">
               {t("copyright", { year: currentYear })}
             </p>
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 text-xs sm:text-sm">
               <a href="#" className="text-gray-400 hover:text-primary transition-colors min-h-[44px] flex items-center">
                 {t("legal.privacy")}
               </a>
@@ -137,7 +137,7 @@ export default function Footer() {
             </div>
           </div>
           
-          <div className="mt-4 sm:mt-6 text-center">
+          <div className="mt-3 sm:mt-4 text-center">
             <p className="text-gray-500 text-xs sm:text-sm flex items-center justify-center gap-2">
               {t("madeWith")}
             </p>

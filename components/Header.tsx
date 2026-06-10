@@ -45,14 +45,14 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
       <nav className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 sm:h-16">
+        <div className="flex items-center justify-between h-12 sm:h-14">
           {/* Logo */}
           <Link
             href="/"
             onClick={goToHome}
             className="flex items-center gap-1.5 sm:gap-2 min-h-[44px]"
           >
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center flex-shrink-0">
+            <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center flex-shrink-0">
               <Image
                 src="/assets/logo.png"
                 alt="SIMPLARA"
@@ -65,7 +65,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             <button
               onClick={() => scrollToSection("features")}
               className="text-gray-700 hover:text-primary font-medium transition-colors"
@@ -210,8 +210,8 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-100">
-            <div className="flex flex-col gap-3">
+          <div className="md:hidden py-3 border-t border-gray-100">
+            <div className="flex flex-col gap-2">
               <button
                 onClick={() => scrollToSection("features")}
                 className="text-left text-gray-700 hover:text-primary font-medium transition-colors py-2 min-h-[44px]"
