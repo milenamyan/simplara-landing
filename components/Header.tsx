@@ -79,18 +79,6 @@ export default function Header() {
               {t("howItWorks")}
             </button>
             <button
-              onClick={() => scrollToSection("founders-club")}
-              className="text-gray-700 hover:text-primary font-medium transition-colors"
-            >
-              {t("foundersClub")}
-            </button>
-            <button
-              onClick={() => scrollToSection("waitlist")}
-              className="text-gray-700 hover:text-primary font-medium transition-colors"
-            >
-              {t("waitlist")}
-            </button>
-            <button
               onClick={() => scrollToSection("faq")}
               className="text-gray-700 hover:text-primary font-medium transition-colors"
             >
@@ -241,18 +229,6 @@ export default function Header() {
                 className="text-left text-gray-700 hover:text-primary font-medium transition-colors py-2 min-h-[44px]"
               >
                 {t("howItWorks")}
-              </button>
-              <button
-                onClick={() => scrollToSection("founders-club")}
-                className="text-left text-gray-700 hover:text-primary font-medium transition-colors py-2 min-h-[44px]"
-              >
-                {t("foundersClub")}
-              </button>
-              <button
-                onClick={() => scrollToSection("waitlist")}
-                className="text-left text-gray-700 hover:text-primary font-medium transition-colors py-2 min-h-[44px]"
-              >
-                {t("waitlist")}
               </button>
               <button
                 onClick={() => scrollToSection("faq")}
