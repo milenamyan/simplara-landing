@@ -6,6 +6,10 @@ import Image from "next/image";
 export default function Hero() {
   const t = useTranslations("hero");
   
+  const scrollToFoundersClub = () => {
+    document.getElementById("founders-club")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const scrollToWaitlist = () => {
     document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -33,16 +37,16 @@ export default function Hero() {
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
               <button
-                onClick={scrollToWaitlist}
+                onClick={scrollToFoundersClub}
                 className="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3.5 sm:px-8 sm:py-4 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95 text-sm sm:text-base min-h-[44px]"
               >
-                {t("joinWaitlist")}
+                {t("joinFoundersClub")}
               </button>
               <button
                 onClick={scrollToWaitlist}
                 className="bg-white hover:bg-gray-50 text-primary border-2 border-primary font-semibold px-6 py-3.5 sm:px-8 sm:py-4 rounded-full transition-all duration-200 text-sm sm:text-base min-h-[44px]"
               >
-                {t("becomeTester")}
+                {t("joinWaitlist")}
               </button>
             </div>
 

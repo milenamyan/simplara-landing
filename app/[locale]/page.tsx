@@ -5,6 +5,7 @@ import Solution from "@/components/Solution";
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
 import MeetLumi from "@/components/MeetLumi";
+import FoundersClub from "@/components/FoundersClub";
 import WaitlistForm from "@/components/WaitlistForm";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
@@ -19,6 +20,7 @@ export default function HomePage() {
       <HowItWorks />
       <Features />
       <MeetLumi />
+      <FoundersClub />
       <WaitlistForm />
       <FAQ />
       <Footer />

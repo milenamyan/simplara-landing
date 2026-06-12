@@ -11,10 +11,11 @@
     "title": "No more ",
     "titleHighlight": "\"I have nothing to wear\"",
     "description": "SIMPLARA is an AI wardrobe with LUMI, an assistant that builds outfits from your real clothes based on weather, occasion and mood.",
-    "joinWaitlist": "Join the Waitlist",
+    "joinFoundersClub": "Join Founders Club — $10",
+    "joinWaitlist": "Join the Waitlist or Become MVP Tester",
     "becomeTester": "Become an MVP Tester",
     "forMenWomen": "For men & women",
-    "freeToJoin": "Free to join",
+    "freeToJoin": "Founders Club — $10",
     "lumiQuestion": "LUMI, I have nothing to wear",
     "todaysOutfit": "Today's Outfit",
     "tomorrow": "Tomorrow"
@@ -210,13 +211,45 @@
       }
     }
   },
+  "foundersClub": {
+    "badge": "Limited to 888 members",
+    "title": "Join the ",
+    "titleHighlight": "Founders Club",
+    "subtitle": "Become a founding member of SIMPLARA. Get exclusive perks, insider access, and special launch pricing — all for a one-time $10 membership.",
+    "price": "$10",
+    "priceLabel": "One-time membership",
+    "spotsLabel": "Available spots",
+    "spotsNote": "Once all spots are taken, membership closes permanently.",
+    "benefits": [
+      {
+        "title": "Founder Badge",
+        "description": "Exclusive badge in the app that marks you as one of the original SIMPLARA founders."
+      },
+      {
+        "title": "Private Telegram",
+        "description": "Access to a closed Telegram community with the team and fellow founders."
+      },
+      {
+        "title": "Early Access",
+        "description": "Be among the first to try new features before public release."
+      },
+      {
+        "title": "Launch Discount",
+        "description": "Special pricing on premium features when SIMPLARA officially launches."
+      }
+    ],
+    "cta": "Join Founders Club — $10",
+    "ctaNote": "One-time payment. No subscription.",
+    "freeWaitlist": "Not ready yet?",
+    "freeWaitlistLink": "Join the free waitlist"
+  },
   "waitlist": {
     "title": "Become one of the ",
     "titleHighlight": "first SIMPLARA users",
-    "subtitle": "Join our waitlist for early access to SIMPLARA. Help shape the future of AI wardrobe technology and get exclusive benefits as a founding member.",
+    "subtitle": "Not ready for Founders Club? Join our free waitlist for early access updates and MVP testing opportunities.",
     "benefits": {
-      "earlyAccess": "Early Access",
-      "foundersClub": "Founders Club",
+      "earlyAccess": "Early Access Updates",
+      "foundersClub": "Founders Club Info",
       "shapeProduct": "Shape the Product"
     },
     "form": {
@@ -286,11 +319,10 @@
     "benefitsList": {
       "title": "Benefits for early users:",
       "items": [
-        "Special early access terms",
-        "Private product updates",
-        "Founders Club membership",
-        "Early access to LUMI features",
-        "Influence product development"
+        "Product launch updates",
+        "MVP testing opportunities",
+        "Influence product development",
+        "Option to upgrade to Founders Club anytime"
       ]
     },
     "error": "Failed to submit form. Please try again or contact us directly."
@@ -321,8 +353,12 @@
         "answer": "Yes. A separate wardrobe classification service with expert stylists is planned. They can help you properly organize and upload your wardrobe for the best AI recommendations."
       },
       {
+        "question": "What is the Founders Club?",
+        "answer": "Founders Club is a one-time $10 membership limited to 888 spots. You get a Founder Badge, access to a private Telegram community, early access to SIMPLARA, and an exclusive launch discount."
+      },
+      {
         "question": "When is the launch?",
-        "answer": "The product is preparing for MVP testing. Early users can join the waitlist now to get priority access when we launch."
+        "answer": "The product is preparing for MVP testing. Join the Founders Club now to secure your spot and get priority access when we launch."
       },
       {
         "question": "Will SIMPLARA be free?",
@@ -371,7 +407,10 @@
   "header": {
     "features": "Features",
     "howItWorks": "How It Works",
+    "foundersClub": "Founders Club",
+    "waitlist": "Waitlist",
     "faq": "FAQ",
-    "joinWaitlist": "Join Waitlist"
+    "joinFoundersClub": "Founders Club",
+    "joinWaitlist": "Join Waitlist or MVP Tester"
   }
 }

@@ -79,6 +79,18 @@ export default function Header() {
               {t("howItWorks")}
             </button>
             <button
+              onClick={() => scrollToSection("founders-club")}
+              className="text-gray-700 hover:text-primary font-medium transition-colors"
+            >
+              {t("foundersClub")}
+            </button>
+            <button
+              onClick={() => scrollToSection("waitlist")}
+              className="text-gray-700 hover:text-primary font-medium transition-colors"
+            >
+              {t("waitlist")}
+            </button>
+            <button
               onClick={() => scrollToSection("faq")}
               className="text-gray-700 hover:text-primary font-medium transition-colors"
             >
@@ -159,6 +171,12 @@ export default function Header() {
             </div>
 
             <button
+              onClick={() => scrollToSection("founders-club")}
+              className="hidden md:inline-flex items-center text-primary hover:text-primary-dark border-2 border-primary font-semibold px-4 py-2 rounded-full transition-all duration-200 text-sm min-h-[44px]"
+            >
+              {t("joinFoundersClub")}
+            </button>
+            <button
               onClick={() => scrollToSection("waitlist")}
               className="bg-primary hover:bg-primary-dark text-white font-semibold px-5 py-2 rounded-full transition-all duration-200 shadow-md hover:shadow-lg text-sm lg:text-base min-h-[44px]"
             >
@@ -225,14 +243,32 @@ export default function Header() {
                 {t("howItWorks")}
               </button>
               <button
+                onClick={() => scrollToSection("founders-club")}
+                className="text-left text-gray-700 hover:text-primary font-medium transition-colors py-2 min-h-[44px]"
+              >
+                {t("foundersClub")}
+              </button>
+              <button
+                onClick={() => scrollToSection("waitlist")}
+                className="text-left text-gray-700 hover:text-primary font-medium transition-colors py-2 min-h-[44px]"
+              >
+                {t("waitlist")}
+              </button>
+              <button
                 onClick={() => scrollToSection("faq")}
                 className="text-left text-gray-700 hover:text-primary font-medium transition-colors py-2 min-h-[44px]"
               >
                 {t("faq")}
               </button>
               <button
+                onClick={() => scrollToSection("founders-club")}
+                className="text-primary border-2 border-primary hover:bg-primary/5 font-semibold px-6 py-3 rounded-full transition-all duration-200 text-center mt-2 min-h-[44px]"
+              >
+                {t("joinFoundersClub")}
+              </button>
+              <button
                 onClick={() => scrollToSection("waitlist")}
-                className="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-full transition-all duration-200 shadow-md text-center mt-2 min-h-[44px]"
+                className="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-full transition-all duration-200 shadow-md text-center min-h-[44px]"
               >
                 {t("joinWaitlist")}
               </button>
