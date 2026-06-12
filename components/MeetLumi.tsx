@@ -85,6 +85,10 @@ export default function MeetLumi() {
               {t("description")}
             </p>
 
+            <p className="text-base sm:text-lg text-gray-700 font-medium mb-3 sm:mb-4 bg-gradient-to-r from-primary/10 to-purple-50 p-4 rounded-xl border border-primary/20">
+              {t("additionalText")}
+            </p>
+
             <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
               {qualities.map((quality, index) => (
                 <div key={index} className="flex items-start gap-3 sm:gap-4">

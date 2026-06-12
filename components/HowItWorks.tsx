@@ -22,18 +22,24 @@ export default function HowItWorks() {
       number: "3",
       title: t("steps.2.title"),
       description: t("steps.2.description"),
-      icon: "✨",
+      icon: "🌅",
     },
     {
       number: "4",
       title: t("steps.3.title"),
       description: t("steps.3.description"),
-      icon: "⭐",
+      icon: "✨",
     },
     {
       number: "5",
       title: t("steps.4.title"),
       description: t("steps.4.description"),
+      icon: "⭐",
+    },
+    {
+      number: "6",
+      title: t("steps.5.title"),
+      description: t("steps.5.description"),
       icon: "📊",
     },
   ];
@@ -54,7 +60,7 @@ export default function HowItWorks() {
           {/* Connection line for desktop */}
           <div className="hidden lg:block absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20"></div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 relative">
             {steps.map((step, index) => (
               <div key={index} className="relative">
                 {/* Step card */}
