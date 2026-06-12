@@ -23,7 +23,7 @@ export default function Hero() {
         <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-purple-200/30 rounded-full blur-2xl" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10 sm:pb-12 lg:pt-24 lg:pb-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-12 sm:pb-14 lg:pt-28 lg:pb-16">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           {/* Copy */}
           <div className="text-center lg:text-left">
@@ -79,9 +79,9 @@ export default function Hero() {
           <div className="relative max-w-md mx-auto lg:max-w-none w-full">
             <div className="relative bg-gradient-to-br from-white via-white to-primary/5 rounded-3xl p-6 sm:p-8 shadow-xl border border-white/80">
               {/* Morning push card */}
-              <div className="absolute -top-3 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-[280px] z-10">
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-3 sm:p-4 flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border-2 border-primary/20">
+              <div className="absolute -top-3 left-2 right-2 sm:left-4 sm:right-4 md:left-6 md:right-auto md:max-w-[280px] z-10">
+                <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-100 p-2.5 sm:p-3 md:p-4 flex items-start gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden flex-shrink-0 border-2 border-primary/20">
                     <Image
                       src="/assets/lumi.png"
                       alt="LUMI"
@@ -90,10 +90,10 @@ export default function Hero() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-xs font-bold text-gray-800">SIMPLARA</p>
-                    <p className="text-sm text-gray-700 leading-snug">{t("pushNotification")}</p>
-                    <p className="text-[10px] text-gray-400 mt-1">{t("visualMorning")}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] sm:text-xs font-bold text-gray-800">SIMPLARA</p>
+                    <p className="text-xs sm:text-sm text-gray-700 leading-snug">{t("pushNotification")}</p>
+                    <p className="text-[9px] sm:text-[10px] text-gray-400 mt-0.5 sm:mt-1">{t("visualMorning")}</p>
                   </div>
                 </div>
               </div>

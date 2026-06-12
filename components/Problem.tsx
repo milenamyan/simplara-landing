@@ -44,22 +44,22 @@ export default function Problem() {
           {problems.map((problem, index) => (
             <div
               key={index}
-              className="text-center p-4 sm:p-5 rounded-2xl bg-gradient-to-b from-gray-50 to-white border border-gray-100 hover:shadow-lg transition-shadow duration-300"
+              className="text-center p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-b from-gray-50 to-white border border-gray-100 hover:shadow-lg transition-shadow duration-300"
             >
-              <div className="text-4xl sm:text-5xl mb-2 sm:mb-3">{problem.icon}</div>
-              <h3 className="text-lg sm:text-xl font-semibold text-dark mb-1.5">
+              <div className="text-3xl sm:text-4xl md:text-5xl mb-1.5 sm:mb-2 md:mb-3">{problem.icon}</div>
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-dark mb-1 sm:mb-1.5">
                 {problem.title}
               </h3>
-              <p className="text-sm sm:text-base text-gray-600">{problem.description}</p>
+              <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-tight sm:leading-normal">{problem.description}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-8 sm:mt-10 bg-gradient-to-br from-primary/5 to-purple-50 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 text-center">
-          <p className="text-xl sm:text-2xl lg:text-3xl font-semibold text-dark mb-2 sm:mb-3 px-2">
+        <div className="mt-6 sm:mt-8 md:mt-10 bg-gradient-to-br from-primary/5 to-purple-50 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8 text-center">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-semibold text-dark mb-1.5 sm:mb-2 md:mb-3 px-2">
             {t("cta")}<span className="text-primary">{t("ctaHighlight")}</span>
           </p>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4">
             {t("ctaSubtitle")}
           </p>
         </div>

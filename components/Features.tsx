@@ -86,26 +86,26 @@ export default function Features() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4">
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`p-3 sm:p-4 rounded-2xl transition-all duration-300 hover:scale-105 ${
+              className={`p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl transition-all duration-300 hover:scale-105 ${
                 feature.highlight
                   ? "bg-gradient-to-br from-primary/10 to-purple-50 border-2 border-primary/30 shadow-lg"
                   : "bg-white border border-gray-200 hover:shadow-lg"
               }`}
             >
-              <div className="text-4xl sm:text-5xl mb-2 sm:mb-3">{feature.icon}</div>
-              <h3 className="text-lg sm:text-xl font-semibold text-dark mb-1.5">
+              <div className="text-3xl sm:text-4xl md:text-5xl mb-1.5 sm:mb-2 md:mb-3">{feature.icon}</div>
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-dark mb-1 sm:mb-1.5">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
+              <p className="text-gray-600 text-[11px] sm:text-xs md:text-sm leading-tight sm:leading-relaxed">
                 {feature.description}
               </p>
               {feature.highlight && (
-                <div className="mt-2 sm:mt-3 inline-block">
-                  <span className="text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full">
+                <div className="mt-2 sm:mt-2.5 md:mt-3 inline-block">
+                  <span className="text-[10px] sm:text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 sm:px-2.5 sm:py-1 md:px-3 rounded-full">
                     {t("comingSoon")}
                   </span>
                 </div>
@@ -114,12 +114,12 @@ export default function Features() {
           ))}
         </div>
 
-        <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+        <div className="mt-6 sm:mt-8 md:mt-10 grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
           {benefits.map((benefit, index) => (
-            <div key={index} className="bg-white rounded-2xl p-4 sm:p-5 text-center border border-gray-200 hover:shadow-lg transition-shadow">
-              <div className="text-3xl sm:text-4xl mb-1.5 sm:mb-2">{benefit.icon}</div>
-              <h4 className="font-semibold text-dark mb-1.5 text-base sm:text-lg">{benefit.title}</h4>
-              <p className="text-xs sm:text-sm text-gray-600">{benefit.description}</p>
+            <div key={index} className="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 text-center border border-gray-200 hover:shadow-lg transition-shadow">
+              <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-1.5 md:mb-2">{benefit.icon}</div>
+              <h4 className="font-semibold text-dark mb-1 sm:mb-1.5 text-sm sm:text-base md:text-lg">{benefit.title}</h4>
+              <p className="text-[11px] sm:text-xs md:text-sm text-gray-600 leading-tight sm:leading-normal">{benefit.description}</p>
             </div>
           ))}
         </div>

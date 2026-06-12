@@ -463,21 +463,21 @@ export default function WaitlistForm() {
             </div>
 
             {/* Submit Button */}
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <button
                 type="button"
                 onClick={() => {
                   setShowStep2(false);
                   handleSubmit(new Event('submit') as any);
                 }}
-                className="flex-1 bg-white hover:bg-gray-50 text-primary border-2 border-primary font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-xl transition-all duration-200 text-sm sm:text-base min-h-[44px]"
+                className="flex-1 bg-white hover:bg-gray-50 text-primary border-2 border-primary font-semibold px-4 py-3 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-xl transition-all duration-200 text-sm sm:text-base min-h-[44px]"
               >
                 {t("form.skipStep2")}
               </button>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 bg-gradient-to-r from-primary to-primary/90 hover:from-primary-dark hover:to-primary text-white font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 text-sm sm:text-base min-h-[44px]"
+                className="flex-1 bg-gradient-to-r from-primary to-primary/90 hover:from-primary-dark hover:to-primary text-white font-semibold px-4 py-3 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 text-sm sm:text-base min-h-[44px]"
               >
                 {isSubmitting ? (
                   <span className="flex items-center justify-center gap-2">

@@ -21,32 +21,32 @@ export default function BeforeAfter() {
 
         <div className="bg-gradient-to-br from-secondary to-purple-50 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-gray-200">
           {/* Table Header */}
-          <div className="grid grid-cols-2 gap-4 p-4 sm:p-6 bg-gradient-to-r from-gray-100 to-gray-50 border-b border-gray-200">
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 p-3 sm:p-4 md:p-6 bg-gradient-to-r from-gray-100 to-gray-50 border-b border-gray-200">
             <div className="text-center">
-              <div className="text-3xl sm:text-4xl mb-2">😰</div>
-              <h3 className="text-lg sm:text-xl font-bold text-gray-700">{t("beforeTitle")}</h3>
+              <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-2">😰</div>
+              <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-700">{t("beforeTitle")}</h3>
             </div>
             <div className="text-center">
-              <div className="text-3xl sm:text-4xl mb-2">✨</div>
-              <h3 className="text-lg sm:text-xl font-bold text-primary">{t("afterTitle")}</h3>
+              <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-2">✨</div>
+              <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-primary">{t("afterTitle")}</h3>
             </div>
           </div>
 
           {/* Comparison Rows */}
           <div className="divide-y divide-gray-200">
             {comparisons.map((comparison, index) => (
-              <div key={index} className="grid grid-cols-2 gap-4 p-4 sm:p-6 hover:bg-white/50 transition-colors">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-red-600 text-lg">✕</span>
+              <div key={index} className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 p-3 sm:p-4 md:p-6 hover:bg-white/50 transition-colors">
+                <div className="flex items-start gap-1.5 sm:gap-2 md:gap-3">
+                  <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-red-600 text-sm sm:text-base md:text-lg">✕</span>
                   </div>
-                  <p className="text-sm sm:text-base text-gray-700">{comparison.before}</p>
+                  <p className="text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-700 leading-tight sm:leading-normal">{comparison.before}</p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary text-lg">✓</span>
+                <div className="flex items-start gap-1.5 sm:gap-2 md:gap-3">
+                  <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary text-sm sm:text-base md:text-lg">✓</span>
                   </div>
-                  <p className="text-sm sm:text-base font-semibold text-primary">{comparison.after}</p>
+                  <p className="text-[11px] sm:text-xs md:text-sm lg:text-base font-semibold text-primary leading-tight sm:leading-normal">{comparison.after}</p>
                 </div>
               </div>
             ))}

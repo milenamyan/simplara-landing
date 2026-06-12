@@ -44,8 +44,8 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
-      <nav className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-12 sm:h-14">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
           <Link
             href="/"
@@ -61,7 +61,7 @@ export default function Header() {
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="text-lg sm:text-xl font-bold text-dark">SIMPLARA</span>
+            <span className="text-base sm:text-lg md:text-xl font-bold text-dark">SIMPLARA</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -254,7 +254,7 @@ export default function Header() {
 
         {/* Mobile Language Menu */}
         {isLangMenuOpen && (
-          <div className="md:hidden absolute right-4 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1">
+          <div className="md:hidden absolute right-2 sm:right-4 mt-2 w-44 sm:w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
             {languages.map((lang) => (
               <button
                 key={lang.code}
