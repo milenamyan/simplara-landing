@@ -35,19 +35,19 @@ export default function MeetLumi() {
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 items-center">
           {/* Left: LUMI Visual */}
           <div className="relative">
-            <div className="relative bg-gradient-to-br from-purple-100 via-pink-50 to-indigo-100 rounded-2xl sm:rounded-3xl p-6 sm:p-8 overflow-hidden">
+            <div className="relative bg-gradient-to-br from-purple-100 via-pink-50 to-indigo-100 rounded-2xl sm:rounded-3xl p-8 sm:p-10 md:p-12 lg:p-16 overflow-hidden">
               {/* Decorative elements */}
-              <div className="absolute top-0 right-0 w-32 h-32 sm:w-40 sm:h-40 bg-primary/10 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 sm:w-40 sm:h-40 bg-purple-300/20 rounded-full blur-3xl"></div>
+              <div className="absolute top-0 right-0 w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 bg-primary/10 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 bg-purple-300/20 rounded-full blur-3xl"></div>
               
               {/* LUMI mascot - large */}
               <div className="relative z-10 flex justify-center">
-                <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 bg-white rounded-full shadow-2xl flex items-center justify-center border-4 sm:border-6 border-primary/20 overflow-hidden">
+                <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 bg-white rounded-full shadow-2xl flex items-center justify-center border-4 sm:border-6 border-primary/20 overflow-hidden">
                   <Image 
                     src="/assets/lumi.png" 
                     alt="LUMI - Your AI Fashion Companion" 
-                    width={256} 
-                    height={256}
+                    width={320} 
+                    height={320}
                     className="w-full h-full object-cover"
                     priority
                   />
@@ -55,22 +55,22 @@ export default function MeetLumi() {
               </div>
 
               {/* Floating speech bubble */}
-              <div className="absolute top-4 right-4 sm:top-8 sm:right-8 bg-white rounded-xl sm:rounded-2xl shadow-xl p-3 sm:p-4 max-w-[160px] sm:max-w-xs animate-bounce z-50">
-                <p className="text-xs sm:text-sm font-medium text-dark">
+              <div className="absolute top-6 right-6 sm:top-10 sm:right-10 md:top-12 md:right-12 bg-white rounded-xl sm:rounded-2xl shadow-xl p-3 sm:p-4 max-w-[180px] sm:max-w-[220px] md:max-w-xs animate-bounce z-50">
+                <p className="text-xs sm:text-sm md:text-base font-medium text-dark">
                   {t("speechBubble")}
                 </p>
                 <div className="absolute -bottom-1.5 sm:-bottom-2 right-6 sm:right-8 w-3 h-3 sm:w-4 sm:h-4 bg-white transform rotate-45"></div>
               </div>
 
               {/* Floating icons */}
-              <div className="absolute bottom-6 left-3 sm:bottom-8 sm:left-6 bg-white rounded-full p-2 sm:p-2.5 shadow-lg">
-                <span className="text-lg sm:text-xl">✨</span>
+              <div className="absolute bottom-8 left-6 sm:bottom-12 sm:left-8 md:bottom-16 md:left-12 bg-white rounded-full p-2.5 sm:p-3 shadow-lg">
+                <span className="text-xl sm:text-2xl">✨</span>
               </div>
-              <div className="absolute top-1/2 left-2 sm:left-3 bg-white rounded-full p-2 sm:p-2.5 shadow-lg">
-                <span className="text-lg sm:text-xl">👕</span>
+              <div className="absolute top-1/2 -translate-y-1/2 left-4 sm:left-6 md:left-8 bg-white rounded-full p-2.5 sm:p-3 shadow-lg">
+                <span className="text-xl sm:text-2xl">👕</span>
               </div>
-              <div className="hidden sm:block absolute top-16 left-1/3 bg-white rounded-full p-2.5 shadow-lg">
-                <span className="text-xl">🎨</span>
+              <div className="absolute top-12 left-1/4 sm:top-16 sm:left-1/3 md:top-20 md:left-1/3 bg-white rounded-full p-2.5 sm:p-3 shadow-lg">
+                <span className="text-xl sm:text-2xl">🎨</span>
               </div>
             </div>
           </div>
