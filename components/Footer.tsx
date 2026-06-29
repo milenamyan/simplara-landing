@@ -8,11 +8,11 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black text-white pt-8 sm:pt-10 lg:pt-12 pb-20 sm:pb-24 lg:pb-28">
+    <footer className="bg-gradient-to-b from-gray-900 to-black text-white py-8 sm:py-10 lg:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 sm:mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-6 mb-8 sm:mb-10">
           {/* Brand Column */}
-          <div>
+          <div className="lg:col-span-2">
             <div className="flex items-center gap-2 sm:gap-2.5 mb-2 sm:mb-3">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0">
                 <Image 
@@ -33,9 +33,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-2 sm:gap-3">
               <a
-                href="https://www.instagram.com/itslumicat?igsh=MTRid243ZWJ2ZWIwdQ=="
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 className="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-colors min-h-[44px] min-w-[44px]"
                 aria-label="Instagram"
               >
@@ -45,9 +43,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://www.tiktok.com/@itslumi.cat?_r=1&_t=ZS-97cM6Dg4HtQ"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 className="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-colors min-h-[44px] min-w-[44px]"
                 aria-label="TikTok"
               >
@@ -55,16 +51,90 @@ export default function Footer() {
                   <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
                 </svg>
               </a>
+              <a
+                href="#"
+                className="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition-colors min-h-[44px] min-w-[44px]"
+                aria-label="Twitter"
+              >
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                </svg>
+              </a>
             </div>
+          </div>
+
+          {/* Product Column */}
+          <div>
+            <h4 className="font-semibold text-base sm:text-lg mb-2 sm:mb-3">{t("product")}</h4>
+            <ul className="space-y-1.5 sm:space-y-2">
+              <li>
+                <a href="#" className="text-sm sm:text-base text-gray-400 hover:text-primary transition-colors inline-block min-h-[44px] flex items-center">
+                  {t("links.features")}
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm sm:text-base text-gray-400 hover:text-primary transition-colors inline-block min-h-[44px] flex items-center">
+                  {t("links.howItWorks")}
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm sm:text-base text-gray-400 hover:text-primary transition-colors inline-block min-h-[44px] flex items-center">
+                  {t("links.pricing")}
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm sm:text-base text-gray-400 hover:text-primary transition-colors inline-block min-h-[44px] flex items-center">
+                  {t("links.roadmap")}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Company Column */}
+          <div>
+            <h4 className="font-semibold text-base sm:text-lg mb-2 sm:mb-3">{t("company")}</h4>
+            <ul className="space-y-1.5 sm:space-y-2">
+              <li>
+                <a href="#" className="text-sm sm:text-base text-gray-400 hover:text-primary transition-colors inline-block min-h-[44px] flex items-center">
+                  {t("links.aboutUs")}
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm sm:text-base text-gray-400 hover:text-primary transition-colors inline-block min-h-[44px] flex items-center">
+                  {t("links.blog")}
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm sm:text-base text-gray-400 hover:text-primary transition-colors inline-block min-h-[44px] flex items-center">
+                  {t("links.careers")}
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm sm:text-base text-gray-400 hover:text-primary transition-colors inline-block min-h-[44px] flex items-center">
+                  {t("links.contact")}
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-5 sm:pt-6 border-t border-gray-800">
-          <div className="flex justify-center md:justify-start">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3">
             <p className="text-gray-400 text-xs sm:text-sm text-center md:text-left">
               {t("copyright", { year: currentYear })}
             </p>
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 text-xs sm:text-sm">
+              <a href="#" className="text-gray-400 hover:text-primary transition-colors min-h-[44px] flex items-center">
+                {t("legal.privacy")}
+              </a>
+              <a href="#" className="text-gray-400 hover:text-primary transition-colors min-h-[44px] flex items-center">
+                {t("legal.terms")}
+              </a>
+              <a href="#" className="text-gray-400 hover:text-primary transition-colors min-h-[44px] flex items-center">
+                {t("legal.cookies")}
+              </a>
+            </div>
           </div>
           
           <div className="mt-3 sm:mt-4 text-center">

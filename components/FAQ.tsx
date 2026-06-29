@@ -82,12 +82,12 @@ export default function FAQ() {
           <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 px-4">
             {t("contactUs")}
           </p>
-          <a
-            href="mailto:contact@simplara.org"
-            className="inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 sm:px-8 sm:py-3.5 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95 min-h-[44px] text-sm sm:text-base"
+          <button
+            type="button"
+            className="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 sm:px-8 sm:py-3.5 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95 min-h-[44px] text-sm sm:text-base"
           >
             {t("contactButton")}
-          </a>
+          </button>
         </div>
       </div>
     </section>
