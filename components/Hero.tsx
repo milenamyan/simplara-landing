@@ -17,6 +17,10 @@ export default function Hero() {
     document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const scrollToFAQ = () => {
+    document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const ctaButtons = (
     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
       <button
@@ -105,9 +109,13 @@ export default function Hero() {
                       priority
                     />
                   </div>
-                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-primary text-white text-sm font-semibold px-4 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                  <button
+                    type="button"
+                    onClick={scrollToFAQ}
+                    className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-primary hover:bg-primary-dark text-white text-sm font-semibold px-4 py-1.5 rounded-full shadow-md whitespace-nowrap transition-all duration-200 hover:shadow-lg active:scale-95 min-h-[44px] cursor-pointer"
+                  >
                     {t("visualAskLumi")}
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
