@@ -187,6 +187,9 @@ export default function WaitlistForm() {
                 setIsSubmitted(false);
                 setShowStep2(false);
                 setShowPayment(false);
+                setError("");
+                setEmailTouched(false);
+                setTelegramTouched(false);
                 setFormData({
                   membershipType: "",
                   name: "",
