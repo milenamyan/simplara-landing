@@ -9,7 +9,8 @@ export interface WaitlistFormData {
   mvpTester: "yes" | "no" | "";
   wardrobeSize: "0-50" | "51-100" | "101-200" | "201-300" | "300+" | "";
   mainProblem: "nothing-to-wear" | "unused-items" | "no-combinations" | "want-organize" | "other" | "";
-  socialMedia?: string;
+  instagram?: string;
+  tiktok?: string;
 }
 
 // API response types

@@ -9,16 +9,17 @@ This guide will help you set up Google Sheets to receive waitlist form submissio
 3. Name it "SIMPLARA Waitlist"
 4. In the first row (headers), add these columns in order:
    - Column A: `Timestamp`
-   - Column B: `Name`
-   - Column C: `Email`
-   - Column D: `Telegram`
-   - Column E: `City`
-   - Column F: `Gender`
-   - Column G: `Age Range`
-   - Column H: `MVP Tester`
-   - Column I: `Wardrobe Size`
-   - Column J: `Main Problem`
-   - Column K: `Social Media`
+   - Column B: `Membership Type`
+   - Column C: `Name`
+   - Column D: `Email`
+   - Column E: `Telegram`
+   - Column F: `City`
+   - Column G: `Gender`
+   - Column H: `Age Range`
+   - Column I: `MVP Tester`
+   - Column J: `Wardrobe Size`
+   - Column K: `Main Problem`
+   - Column L: `Social Media`
 
 ## Step 2: Create Google Apps Script
 
@@ -68,7 +69,7 @@ The Web App URL stays the same — you do **not** need a new URL.
 
 1. Run the `testPost` function in Apps Script
 2. Check **View** → **Execution log** — you should see `{"success":true,...}`
-3. Confirm a test row appears with **all 11 fields** filled (including Email, Telegram, Wardrobe Size, Main Problem, Social Media)
+3. Confirm a test row appears with **all 12 fields** filled (including Membership Type, Email, Telegram, Wardrobe Size, Main Problem, Social Media)
 4. Open your Web App URL in a browser — you should see `{"success":true,"version":2,...}`. If you do not see `version: 2`, the new deployment is not live yet.
 
 ## Step 4: Update Environment Variables

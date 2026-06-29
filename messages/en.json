@@ -8,13 +8,10 @@
   },
   "hero": {
     "badge": "Early Access Available",
-    "title": "Full closet. Nothing to wear?",
-    "titleHighlight": "Ask LUMI.",
-    "description": "SIMPLARA is an AI wardrobe assistant that helps men and women build better outfits from clothes they already own — based on weather, occasion, mood and personal style.",
+    "title": "Full closet.",
+    "subtitle": "Nothing to wear.",
     "joinWaitlist": "Join the Waitlist",
-    "becomeMVPTester": "Become an MVP Tester",
-    "forMenWomen": "For men & women",
-    "freeToJoin": "Free to join",
+    "joinFirst888": "Join FIRST 888 (Founders Club)",
     "pushNotification": "Good morning. I picked 3 outfits for today.",
     "outfit1": "Option 1: Casual",
     "outfit2": "Option 2: Business",
@@ -57,8 +54,14 @@
     "tagline": "Your style, your rules"
   },
   "dailyScenario": {
-    "title": "Wake up. LUMI already picked your outfits.",
+    "title": "Your Daily Scenario",
     "subtitle": "Every morning, LUMI sends you a push notification with 3 ready-to-wear outfit options — selected from your real wardrobe and matched to the weather, your plans and your personal style.",
+    "scenario": {
+      "step1": "Woke up.",
+      "step2": "Got push notification.",
+      "step3": "Chose outfit.",
+      "step4": "Went to live."
+    },
     "pushMessage": "Good morning. I picked 3 outfits for today.",
     "pushTime": "now",
     "option1": "Option 1: Casual",
@@ -193,9 +196,13 @@
     "aiPowered": "AI Powered ✨"
   },
   "howItWorks": {
-    "title": "How it ",
-    "titleHighlight": "works",
-    "subtitle": "Get started in minutes. SIMPLARA learns from your wardrobe and gets smarter over time.",
+    "title": "How SIMPLARA ",
+    "titleHighlight": "Works",
+    "subtitle": "Every morning, LUMI sends you 3 ready-to-wear outfits.",
+    "mainFeature": {
+      "title": "Morning arrives — outfits ready",
+      "description": "LUMI checks your wardrobe, analyzes the weather, and prepares 3 complete outfit options before you even wake up."
+    },
     "steps": [
       {
         "title": "Upload your clothes",
@@ -208,22 +215,9 @@
       {
         "title": "LUMI prepares your morning outfits",
         "description": "Every morning, LUMI checks your wardrobe, weather and plans — then prepares 3 outfit options before you even open the app"
-      },
-      {
-        "title": "You choose what feels right",
-        "description": "Open the push notification, compare the options and choose the outfit that fits your day"
-      },
-      {
-        "title": "You rate what works",
-        "description": "Save outfits, give feedback and help LUMI understand your style better"
-      },
-      {
-        "title": "Your wardrobe gets smarter",
-        "description": "The more you use SIMPLARA, the more accurate and personal the recommendations become"
       }
     ],
-    "cta": "The more you use SIMPLARA, the better it understands your style",
-    "ctaSubtitle": "AI learns from your feedback, weather patterns, and usage scenarios to provide increasingly accurate suggestions"
+    "cta": "The more you use SIMPLARA, the better it understands your style"
   },
   "features": {
     "title": "Everything you need for a ",
@@ -337,47 +331,84 @@
     }
   },
   "foundersClub": {
-    "badge": "Limited to 888 members",
-    "title": "Join the ",
-    "titleHighlight": "Founders Club",
-    "subtitle": "Become a founding member of SIMPLARA. Get exclusive perks, insider access, and special launch pricing — all for a one-time $10 membership.",
-    "price": "$10",
-    "priceLabel": "One-time membership",
-    "spotsLabel": "Available spots",
-    "spotsNote": "Once all spots are taken, membership closes permanently.",
+    "badge": "Only 888 spots",
+    "title": "FIRST 888 (Founders Club)",
+    "subtitle": "First 888 participants",
+    "benefitsTitle": "What FIRST 888 Members Get",
+    "pricing": {
+      "title": "Membership Cost",
+      "price": "$5",
+      "firstTier": "first 88 members",
+      "thenIncreases": "Then price increases",
+      "totalSpots": "Total spots",
+      "closesForever": "Club closes forever after 888 members",
+      "oneTime": "One-time payment",
+      "noSubscription": "No subscription",
+      "noHiddenFees": "No hidden fees"
+    },
     "benefits": [
       {
         "title": "Founder Badge",
-        "description": "Exclusive badge in the app that marks you as one of the original SIMPLARA founders."
-      },
-      {
-        "title": "Private Telegram",
-        "description": "Access to a closed Telegram community with the team and fellow founders."
+        "description": "Unique badge of the first participant. Forever locked in your profile. Shows you were with the project before official launch."
       },
       {
         "title": "Early Access",
-        "description": "Be among the first to try new features before public release."
+        "description": "Get access to SIMPLARA before other users. Access to new features before public release."
       },
       {
-        "title": "Launch Discount",
-        "description": "Special pricing on premium features when SIMPLARA officially launches."
+        "title": "Closed Community",
+        "description": "Access to closed Founders Club. Communication with the team. Discussion of new features. Voting on product development."
+      },
+      {
+        "title": "Product Influence",
+        "description": "Founders test new features first. Their feedback shapes SIMPLARA's development."
+      },
+      {
+        "title": "Special Launch Terms",
+        "description": "Exclusive subscription terms after product launch. Only for club members."
+      },
+      {
+        "title": "Event Invitations",
+        "description": "Access to SIMPLARA's closed events. Fashion meetups. Presentations. New feature launches. Offline events."
+      },
+      {
+        "title": "Collectible Founder Drops",
+        "description": "Exclusive digital and physical merch only for Founders. Not sold separately."
+      },
+      {
+        "title": "Founder Wall",
+        "description": "Names of first participants preserved forever in project history. First 888 become part of SIMPLARA's story."
       }
     ],
-    "cta": "Join Founders Club — $10",
-    "ctaNote": "One-time payment. No subscription.",
+    "cta": "Become a Founder",
     "freeWaitlist": "Not ready yet?",
     "freeWaitlistLink": "Join the free waitlist"
   },
   "waitlist": {
-    "title": "Become one of the ",
-    "titleHighlight": "first SIMPLARA users",
-    "subtitle": "Not ready for Founders Club? Join our free waitlist for early access updates and MVP testing opportunities.",
+    "title": "Join the Waitlist.",
+    "titleHighlight": "Become a Founder.",
+    "subtitle": "Join our free waitlist for early access or become one of the first 888 founding members.",
     "benefits": {
       "earlyAccess": "Early Access Updates",
       "foundersClub": "Founders Club Info",
       "shapeProduct": "Shape the Product"
     },
     "form": {
+      "membershipType": "Choose your membership",
+      "membershipOptions": {
+        "waitlist": {
+          "title": "Free Waitlist",
+          "description": "Join the waiting list for early access",
+          "price": "FREE"
+        },
+        "founders": {
+          "title": "FIRST 888 (Founders Club)",
+          "description": "Exclusive founding member benefits",
+          "price": "$5 (first 88 members)",
+          "badge": "LIMITED",
+          "paymentNote": "Payment details will be collected on the next step after signup"
+        }
+      },
       "step1Title": "Join the waitlist",
       "step1Subtitle": "Quick signup — takes 30 seconds",
       "step2Title": "Help LUMI understand your wardrobe better",
@@ -435,6 +466,10 @@
       "socialMedia": "Instagram or TikTok",
       "socialMediaOptional": "(optional)",
       "socialMediaPlaceholder": "@yourhandle",
+      "instagram": "Instagram",
+      "instagramPlaceholder": "@yourhandle",
+      "tiktok": "TikTok",
+      "tiktokPlaceholder": "@yourhandle",
       "readyForInterviews": "Ready to participate in interviews or testing?",
       "readyForInterviewsPlaceholder": "Select an option",
       "readyForInterviewsOptions": {
@@ -443,12 +478,27 @@
         "no": "No, thanks"
       },
       "submit": "Join the Waitlist",
+      "submitFounders": "Join FIRST 888 — Next Step",
       "submitting": "Submitting...",
       "completeSignup": "Complete Signup",
+      "completeSignupFounders": "Become a Founder",
       "skipStep2": "Skip for now",
       "required": "*",
       "privacy": "By joining, you agree to receive updates about SIMPLARA. We respect your privacy and won't spam you.",
       "step2Note": "This information helps us personalize SIMPLARA for you, but it's completely optional."
+    },
+    "payment": {
+      "title": "Complete your Founder membership",
+      "subtitle": "FIRST 888 (Founders Club) — one-time payment",
+      "item": "FIRST 888 Founder Membership",
+      "total": "Total",
+      "cardName": "Name on card",
+      "cardNamePlaceholder": "Full name",
+      "cardNumber": "Card number",
+      "expiry": "Expiry date",
+      "cvc": "CVC",
+      "payButton": "Pay $5 & Become a Founder",
+      "secureNote": "Secure payment · One-time, no subscription"
     },
     "success": {
       "title": "You're on the SIMPLARA early access list!",
@@ -493,7 +543,7 @@
       },
       {
         "question": "What is the Founders Club?",
-        "answer": "Founders Club is a one-time $10 membership limited to 888 spots. You get a Founder Badge, access to a private Telegram community, early access to SIMPLARA, and an exclusive launch discount."
+        "answer": "FIRST 888 (Founders Club) is a one-time membership limited to 888 spots. First 88 members pay $5, then price increases. You get a Founder Badge, early access, closed community, influence on product development, special launch terms, event invitations, collectible merch, and your name on the Founder Wall."
       },
       {
         "question": "When is the launch?",

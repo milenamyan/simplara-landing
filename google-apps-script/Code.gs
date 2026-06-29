@@ -5,6 +5,7 @@ function doPost(e) {
 
     sheet.appendRow([
       new Date(),
+      data.membershipType || "",
       data.name || "",
       data.email || "",
       data.telegram || "",
@@ -14,7 +15,8 @@ function doPost(e) {
       data.mvpTester || "",
       data.wardrobeSize || "",
       data.mainProblem || "",
-      data.socialMedia || "",
+      data.instagram || "",
+      data.tiktok || "",
     ]);
 
     return ContentService.createTextOutput(
@@ -43,7 +45,7 @@ function doGet() {
   return ContentService.createTextOutput(
     JSON.stringify({
       success: true,
-      version: 2,
+      version: 3,
       message: "SIMPLARA waitlist handler is running",
     })
   ).setMimeType(ContentService.MimeType.JSON);
@@ -52,6 +54,7 @@ function doGet() {
 function testPost() {
   const result = doPost({
     parameter: {
+      membershipType: "founders",
       name: "Test User",
       email: "test@example.com",
       telegram: "@testuser",
@@ -61,7 +64,8 @@ function testPost() {
       mvpTester: "yes",
       wardrobeSize: "51-100",
       mainProblem: "nothing-to-wear",
-      socialMedia: "@testuser",
+      instagram: "@testuser",
+      tiktok: "@testuser",
     },
   });
 

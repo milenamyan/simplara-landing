@@ -17,6 +17,24 @@ export default function DailyScenario() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-3 sm:mb-4 px-2">
             {t("title")}
           </h2>
+          
+          {/* Simple 4-step scenario */}
+          <div className="max-w-4xl mx-auto mb-6 sm:mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+              {[
+                { step: t("scenario.step1"), icon: "🛏️" },
+                { step: t("scenario.step2"), icon: "📱" },
+                { step: t("scenario.step3"), icon: "✨" },
+                { step: t("scenario.step4"), icon: "🚀" }
+              ].map((item, index) => (
+                <div key={index} className="bg-white rounded-xl p-4 shadow-md border border-gray-100">
+                  <div className="text-3xl mb-2">{item.icon}</div>
+                  <p className="text-sm sm:text-base font-semibold text-dark">{item.step}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
             {t("subtitle")}
           </p>

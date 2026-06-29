@@ -11,8 +11,28 @@ export default function Hero() {
   };
 
   const scrollToWaitlist = () => {
+    window.dispatchEvent(
+      new CustomEvent("simplara:select-membership", { detail: "waitlist" })
+    );
     document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const ctaButtons = (
+    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+      <button
+        onClick={scrollToWaitlist}
+        className="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3.5 sm:px-8 sm:py-4 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95 text-sm sm:text-base min-h-[44px]"
+      >
+        {t("joinWaitlist")}
+      </button>
+      <button
+        onClick={scrollToFoundersClub}
+        className="bg-dark hover:bg-gray-800 text-white font-semibold px-6 py-3.5 sm:px-8 sm:py-4 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl text-sm sm:text-base min-h-[44px]"
+      >
+        {t("joinFirst888")}
+      </button>
+    </div>
+  );
 
   return (
     <section className="relative bg-secondary overflow-hidden">
@@ -36,43 +56,17 @@ export default function Hero() {
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-dark mb-3 sm:mb-4 leading-tight">
               {t("title")}
-              <br />
-              <span className="text-primary">{t("titleHighlight")}</span>
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-4 sm:mb-6 max-w-2xl mx-auto lg:mx-0">
-              {t("description")}
-            </p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-600 mb-4 sm:mb-6">
+              {t("subtitle")}
+            </h2>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-              <button
-                onClick={scrollToWaitlist}
-                className="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3.5 sm:px-8 sm:py-4 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95 text-sm sm:text-base min-h-[44px]"
-              >
-                {t("joinWaitlist")}
-              </button>
-              <button
-                onClick={scrollToFoundersClub}
-                className="bg-white hover:bg-gray-50 text-primary border-2 border-primary font-semibold px-6 py-3.5 sm:px-8 sm:py-4 rounded-full transition-all duration-200 text-sm sm:text-base min-h-[44px]"
-              >
-                {t("becomeMVPTester")}
-              </button>
+            {/* Buttons — desktop (shown in copy column) */}
+            <div className="hidden lg:block">
+              {ctaButtons}
             </div>
 
-            <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600">
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                </svg>
-                <span>{t("forMenWomen")}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>{t("freeToJoin")}</span>
-              </div>
-            </div>
           </div>
 
           {/* Visual */}
@@ -117,6 +111,11 @@ export default function Hero() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Buttons — mobile (shown after Lumi image) */}
+          <div className="lg:hidden mt-2">
+            {ctaButtons}
           </div>
         </div>
       </div>

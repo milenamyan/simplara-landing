@@ -22,21 +22,11 @@ export default function HomePage() {
     <main className="min-h-screen">
       <Header />
       <Hero />
-      <BrandManifesto />
-      <Problem />
-      <DailyScenario />
       <HowItWorks />
-      <BeforeAfter />
-      <Solution />
-      <Features />
-      <MeetLumi />
-      <WhyComeback />
-      <MoreThanApp />
-      <PrivacyTrust />
+      <DailyScenario />
       <FoundersClub />
-      <WaitlistForm />
       <FAQ />
-      <FinalCTA />
+      <WaitlistForm />
       <Footer />
     </main>
   );

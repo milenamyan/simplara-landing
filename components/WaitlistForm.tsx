@@ -2,13 +2,15 @@
 
 import { validateEmail, validateTelegram } from "@/lib/utils";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import CustomSelect from "./CustomSelect";
 
 export default function WaitlistForm() {
   const t = useTranslations("waitlist");
   
   const [formData, setFormData] = useState({
     // Step 1: Essential fields
+    membershipType: "", // "waitlist" or "founders"
     name: "",
     email: "",
     telegram: "",
@@ -19,12 +21,13 @@ export default function WaitlistForm() {
     ageRange: "",
     wardrobeSize: "",
     mainProblem: "",
-    socialMedia: "",
-    readyForInterviews: "",
+    instagram: "",
+    tiktok: "",
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showStep2, setShowStep2] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [emailTouched, setEmailTouched] = useState(false);
@@ -36,7 +39,35 @@ export default function WaitlistForm() {
   const isTelegramValid = validateTelegram(telegramValue);
   const showEmailError = emailTouched && !isEmailValid;
   const showTelegramError = telegramTouched && !isTelegramValid;
-  const canSubmitStep1 = isEmailValid && isTelegramValid && formData.name && formData.city && formData.mvpTester;
+  const isFounder = formData.membershipType === "founders";
+  const canSubmitStep1 =
+    isEmailValid &&
+    isTelegramValid &&
+    formData.name &&
+    formData.city &&
+    formData.membershipType &&
+    (isFounder || formData.mvpTester);
+
+  // Keep the form/section in view across steps: step 2, payment, and success
+  useEffect(() => {
+    if (showStep2 || showPayment || isSubmitted) {
+      document
+        .getElementById("waitlist")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [showStep2, showPayment, isSubmitted]);
+
+  // Allow other sections (e.g. "Become a Founder" buttons) to preselect a membership type
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<string>).detail;
+      if (detail === "founders" || detail === "waitlist") {
+        setFormData(prev => ({ ...prev, membershipType: detail }));
+      }
+    };
+    window.addEventListener("simplara:select-membership", handler);
+    return () => window.removeEventListener("simplara:select-membership", handler);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -65,6 +96,11 @@ export default function WaitlistForm() {
     setError("");
     
     try {
+      // Validate membershipType is selected
+      if (!formData.membershipType) {
+        throw new Error("Please select a membership type");
+      }
+
       // Get Google Script URL from environment variable
       const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL;
       
@@ -72,19 +108,34 @@ export default function WaitlistForm() {
         throw new Error("Google Script URL not configured. Please check GOOGLE_SHEETS_SETUP.md");
       }
 
+      // Record a clear access type: Founder, MVP Tester, or Early Access
+      const mvpTesterValue = isFounder
+        ? "Founder"
+        : formData.mvpTester === "yes"
+          ? "MVP Tester"
+          : "Early Access";
+
       // URL-encoded form fields are the most reliable format for Google Apps Script (e.parameter)
       const body = new URLSearchParams({
+        membershipType: formData.membershipType,
         name: formData.name,
         email: emailValue,
         telegram: telegramValue,
         city: formData.city,
         gender: formData.gender,
         ageRange: formData.ageRange,
-        mvpTester: formData.mvpTester,
+        mvpTester: mvpTesterValue,
         wardrobeSize: formData.wardrobeSize,
         mainProblem: formData.mainProblem,
-        socialMedia: formData.socialMedia.trim(),
-        readyForInterviews: formData.readyForInterviews,
+        instagram: formData.instagram.trim(),
+        tiktok: formData.tiktok.trim(),
+      });
+
+      // Debug: Log what we're sending
+      console.log("Submitting form data:", {
+        membershipType: formData.membershipType,
+        name: formData.name,
+        email: emailValue,
       });
 
       const response = await fetch(scriptUrl, {
@@ -104,7 +155,12 @@ export default function WaitlistForm() {
         throw new Error(result.error || "Submission failed");
       }
 
-      setIsSubmitted(true);
+      // Founders go to the payment step; waitlist users go straight to success
+      if (isFounder) {
+        setShowPayment(true);
+      } else {
+        setIsSubmitted(true);
+      }
       
     } catch (err) {
       console.error("Submission error:", err);
@@ -116,7 +172,7 @@ export default function WaitlistForm() {
 
   if (isSubmitted) {
     return (
-    <section id="waitlist" className="py-8 sm:py-10 lg:py-14 bg-gradient-to-b from-primary to-primary/90">
+    <section id="waitlist" className="scroll-mt-20 py-8 sm:py-10 lg:py-14 bg-gradient-to-b from-primary to-primary/90">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl">
           <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">🎉</div>
@@ -130,7 +186,9 @@ export default function WaitlistForm() {
               onClick={() => {
                 setIsSubmitted(false);
                 setShowStep2(false);
+                setShowPayment(false);
                 setFormData({
+                  membershipType: "",
                   name: "",
                   email: "",
                   telegram: "",
@@ -140,8 +198,8 @@ export default function WaitlistForm() {
                   ageRange: "",
                   wardrobeSize: "",
                   mainProblem: "",
-                  socialMedia: "",
-                  readyForInterviews: "",
+                  instagram: "",
+                  tiktok: "",
                 });
               }}
               className="text-primary hover:text-primary/80 font-semibold min-h-[44px]"
@@ -155,7 +213,7 @@ export default function WaitlistForm() {
   }
 
   return (
-    <section id="waitlist" className="py-8 sm:py-10 lg:py-14 bg-secondary">
+    <section id="waitlist" className="scroll-mt-20 py-8 sm:py-10 lg:py-14 bg-secondary">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-6 sm:mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-2 sm:mb-3 px-2">
@@ -197,6 +255,96 @@ export default function WaitlistForm() {
                     <p className="text-xs sm:text-sm">{error}</p>
                   </div>
                 )}
+
+            {/* Membership Type Selection */}
+            <div className="mb-6">
+              <label className="block text-xs sm:text-sm font-semibold text-dark mb-3">
+                {t("form.membershipType")} {t("form.required")}
+              </label>
+              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
+                {/* Free Waitlist Option */}
+                <button
+                  type="button"
+                  onClick={() => setFormData(prev => ({ ...prev, membershipType: "waitlist" }))}
+                  className={`relative p-4 sm:p-5 rounded-xl border-2 transition-all text-left min-h-[44px] ${
+                    formData.membershipType === "waitlist"
+                      ? "border-primary bg-primary/5 shadow-md"
+                      : "border-gray-200 hover:border-gray-300"
+                  }`}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                      formData.membershipType === "waitlist"
+                        ? "border-primary bg-primary"
+                        : "border-gray-300"
+                    }`}>
+                      {formData.membershipType === "waitlist" && (
+                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                        </svg>
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-bold text-dark text-sm sm:text-base mb-1">
+                        {t("form.membershipOptions.waitlist.title")}
+                      </div>
+                      <div className="text-xs sm:text-sm text-gray-600">
+                        {t("form.membershipOptions.waitlist.description")}
+                      </div>
+                      <div className="mt-2 inline-block bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded-full">
+                        {t("form.membershipOptions.waitlist.price")}
+                      </div>
+                    </div>
+                  </div>
+                </button>
+
+                {/* Founders Club Option */}
+                <button
+                  type="button"
+                  onClick={() => setFormData(prev => ({ ...prev, membershipType: "founders" }))}
+                  className={`relative p-4 sm:p-5 rounded-xl border-2 transition-all text-left min-h-[44px] ${
+                    formData.membershipType === "founders"
+                      ? "border-primary bg-primary/5 shadow-md"
+                      : "border-gray-200 hover:border-gray-300"
+                  }`}
+                >
+                  <div className="absolute -top-2 -right-2 bg-amber-400 text-dark text-[10px] font-bold px-2 py-1 rounded-full shadow-md">
+                    🏅 {t("form.membershipOptions.founders.badge")}
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                      formData.membershipType === "founders"
+                        ? "border-primary bg-primary"
+                        : "border-gray-300"
+                    }`}>
+                      {formData.membershipType === "founders" && (
+                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                        </svg>
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-bold text-dark text-sm sm:text-base mb-1">
+                        {t("form.membershipOptions.founders.title")}
+                      </div>
+                      <div className="text-xs sm:text-sm text-gray-600">
+                        {t("form.membershipOptions.founders.description")}
+                      </div>
+                      <div className="mt-2 inline-block bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-1 rounded-full">
+                        {t("form.membershipOptions.founders.price")}
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </div>
+              {formData.membershipType === "founders" && (
+                <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                  <p className="text-xs sm:text-sm text-amber-800">
+                    💳 {t("form.membershipOptions.founders.paymentNote")}
+                  </p>
+                </div>
+              )}
+            </div>
 
             {/* Name */}
             <div>
@@ -303,32 +451,41 @@ export default function WaitlistForm() {
               />
             </div>
 
-            {/* MVP Tester */}
-            <div>
-              <label htmlFor="mvpTester" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
-                {t("form.mvpTester")} {t("form.required")}
-              </label>
-              <select
-                id="mvpTester"
-                name="mvpTester"
-                required
-                value={formData.mvpTester}
-                onChange={handleChange}
-                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white text-sm sm:text-base min-h-[44px]"
-              >
-                <option value="">{t("form.mvpTesterPlaceholder")}</option>
-                <option value="yes">{t("form.mvpTesterOptions.yes")}</option>
-                <option value="no">{t("form.mvpTesterOptions.no")}</option>
-              </select>
-            </div>
+            {/* MVP Tester — hidden for founders (they get early access + testing by default) */}
+            {!isFounder && (
+              <div>
+                <label htmlFor="mvpTester" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
+                  {t("form.mvpTester")} {t("form.required")}
+                </label>
+                <CustomSelect
+                  value={formData.mvpTester}
+                  onChange={(v) => setFormData((prev) => ({ ...prev, mvpTester: v }))}
+                  placeholder={t("form.mvpTesterPlaceholder")}
+                  options={[
+                    { value: "yes", label: t("form.mvpTesterOptions.yes") },
+                    { value: "no", label: t("form.mvpTesterOptions.no") },
+                  ]}
+                />
+              </div>
+            )}
 
             {/* Submit Button */}
             <button
               type="submit"
               disabled={isSubmitting || !canSubmitStep1}
-              className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary-dark hover:to-primary text-white font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 text-sm sm:text-base min-h-[44px]"
+              className={`w-full font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 text-sm sm:text-base min-h-[44px] ${
+                formData.membershipType === "founders"
+                  ? "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white"
+                  : "bg-gradient-to-r from-primary to-primary/90 hover:from-primary-dark hover:to-primary text-white"
+              }`}
             >
-              {t("form.submit")}
+              {formData.membershipType === "founders" ? (
+                <span className="flex items-center justify-center gap-2">
+                  🏅 {t("form.submitFounders")}
+                </span>
+              ) : (
+                t("form.submit")
+              )}
             </button>
 
             <p className="text-xs text-gray-500 text-center mt-3 sm:mt-4">
@@ -350,19 +507,17 @@ export default function WaitlistForm() {
               <label htmlFor="gender" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
                 {t("form.gender")}
               </label>
-              <select
-                id="gender"
-                name="gender"
+              <CustomSelect
                 value={formData.gender}
-                onChange={handleChange}
-                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white text-sm sm:text-base min-h-[44px]"
-              >
-                <option value="">{t("form.genderPlaceholder")}</option>
-                <option value="female">{t("form.genderOptions.female")}</option>
-                <option value="male">{t("form.genderOptions.male")}</option>
-                <option value="non-binary">{t("form.genderOptions.nonBinary")}</option>
-                <option value="prefer-not-to-say">{t("form.genderOptions.preferNotToSay")}</option>
-              </select>
+                onChange={(v) => setFormData((prev) => ({ ...prev, gender: v }))}
+                placeholder={t("form.genderPlaceholder")}
+                options={[
+                  { value: "female", label: t("form.genderOptions.female") },
+                  { value: "male", label: t("form.genderOptions.male") },
+                  { value: "non-binary", label: t("form.genderOptions.nonBinary") },
+                  { value: "prefer-not-to-say", label: t("form.genderOptions.preferNotToSay") },
+                ]}
+              />
             </div>
 
             {/* Age Range */}
@@ -370,19 +525,17 @@ export default function WaitlistForm() {
               <label htmlFor="ageRange" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
                 {t("form.ageRange")}
               </label>
-              <select
-                id="ageRange"
-                name="ageRange"
+              <CustomSelect
                 value={formData.ageRange}
-                onChange={handleChange}
-                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white text-sm sm:text-base min-h-[44px]"
-              >
-                <option value="">{t("form.ageRangePlaceholder")}</option>
-                <option value="18-24">{t("form.ageRangeOptions.18-24")}</option>
-                <option value="25-34">{t("form.ageRangeOptions.25-34")}</option>
-                <option value="35-44">{t("form.ageRangeOptions.35-44")}</option>
-                <option value="45+">{t("form.ageRangeOptions.45+")}</option>
-              </select>
+                onChange={(v) => setFormData((prev) => ({ ...prev, ageRange: v }))}
+                placeholder={t("form.ageRangePlaceholder")}
+                options={[
+                  { value: "18-24", label: t("form.ageRangeOptions.18-24") },
+                  { value: "25-34", label: t("form.ageRangeOptions.25-34") },
+                  { value: "35-44", label: t("form.ageRangeOptions.35-44") },
+                  { value: "45+", label: t("form.ageRangeOptions.45+") },
+                ]}
+              />
             </div>
 
             {/* Wardrobe Size */}
@@ -390,20 +543,18 @@ export default function WaitlistForm() {
               <label htmlFor="wardrobeSize" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
                 {t("form.wardrobeSize")}
               </label>
-              <select
-                id="wardrobeSize"
-                name="wardrobeSize"
+              <CustomSelect
                 value={formData.wardrobeSize}
-                onChange={handleChange}
-                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white text-sm sm:text-base min-h-[44px]"
-              >
-                <option value="">{t("form.wardrobeSizePlaceholder")}</option>
-                <option value="0-50">{t("form.wardrobeSizeOptions.0-50")}</option>
-                <option value="51-100">{t("form.wardrobeSizeOptions.51-100")}</option>
-                <option value="101-200">{t("form.wardrobeSizeOptions.101-200")}</option>
-                <option value="201-300">{t("form.wardrobeSizeOptions.201-300")}</option>
-                <option value="300+">{t("form.wardrobeSizeOptions.300+")}</option>
-              </select>
+                onChange={(v) => setFormData((prev) => ({ ...prev, wardrobeSize: v }))}
+                placeholder={t("form.wardrobeSizePlaceholder")}
+                options={[
+                  { value: "0-50", label: t("form.wardrobeSizeOptions.0-50") },
+                  { value: "51-100", label: t("form.wardrobeSizeOptions.51-100") },
+                  { value: "101-200", label: t("form.wardrobeSizeOptions.101-200") },
+                  { value: "201-300", label: t("form.wardrobeSizeOptions.201-300") },
+                  { value: "300+", label: t("form.wardrobeSizeOptions.300+") },
+                ]}
+              />
             </div>
 
             {/* Main Problem */}
@@ -411,65 +562,57 @@ export default function WaitlistForm() {
               <label htmlFor="mainProblem" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
                 {t("form.mainProblem")}
               </label>
-              <select
-                id="mainProblem"
-                name="mainProblem"
+              <CustomSelect
                 value={formData.mainProblem}
-                onChange={handleChange}
-                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white text-sm sm:text-base min-h-[44px]"
-              >
-                <option value="">{t("form.mainProblemPlaceholder")}</option>
-                <option value="nothing-to-wear">{t("form.mainProblemOptions.nothingToWear")}</option>
-                <option value="unused-items">{t("form.mainProblemOptions.unusedItems")}</option>
-                <option value="no-combinations">{t("form.mainProblemOptions.noCombinations")}</option>
-                <option value="want-organize">{t("form.mainProblemOptions.wantOrganize")}</option>
-                <option value="other">{t("form.mainProblemOptions.other")}</option>
-              </select>
-            </div>
-
-            {/* Social Media (Optional) */}
-            <div>
-              <label htmlFor="socialMedia" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
-                {t("form.socialMedia")} <span className="text-gray-400">{t("form.socialMediaOptional")}</span>
-              </label>
-              <input
-                type="text"
-                id="socialMedia"
-                name="socialMedia"
-                value={formData.socialMedia}
-                onChange={handleChange}
-                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-sm sm:text-base min-h-[44px]"
-                placeholder={t("form.socialMediaPlaceholder")}
+                onChange={(v) => setFormData((prev) => ({ ...prev, mainProblem: v }))}
+                placeholder={t("form.mainProblemPlaceholder")}
+                options={[
+                  { value: "nothing-to-wear", label: t("form.mainProblemOptions.nothingToWear") },
+                  { value: "unused-items", label: t("form.mainProblemOptions.unusedItems") },
+                  { value: "no-combinations", label: t("form.mainProblemOptions.noCombinations") },
+                  { value: "want-organize", label: t("form.mainProblemOptions.wantOrganize") },
+                  { value: "other", label: t("form.mainProblemOptions.other") },
+                ]}
               />
             </div>
 
-            {/* Ready for Interviews */}
+            {/* Instagram (Optional) */}
             <div>
-              <label htmlFor="readyForInterviews" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
-                {t("form.readyForInterviews")}
+              <label htmlFor="instagram" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
+                {t("form.instagram")} <span className="text-gray-400">{t("form.socialMediaOptional")}</span>
               </label>
-              <select
-                id="readyForInterviews"
-                name="readyForInterviews"
-                value={formData.readyForInterviews}
+              <input
+                type="text"
+                id="instagram"
+                name="instagram"
+                value={formData.instagram}
                 onChange={handleChange}
-                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors bg-white text-sm sm:text-base min-h-[44px]"
-              >
-                <option value="">{t("form.readyForInterviewsPlaceholder")}</option>
-                <option value="yes">{t("form.readyForInterviewsOptions.yes")}</option>
-                <option value="maybe">{t("form.readyForInterviewsOptions.maybe")}</option>
-                <option value="no">{t("form.readyForInterviewsOptions.no")}</option>
-              </select>
+                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-sm sm:text-base min-h-[44px]"
+                placeholder={t("form.instagramPlaceholder")}
+              />
+            </div>
+
+            {/* TikTok (Optional) */}
+            <div>
+              <label htmlFor="tiktok" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
+                {t("form.tiktok")} <span className="text-gray-400">{t("form.socialMediaOptional")}</span>
+              </label>
+              <input
+                type="text"
+                id="tiktok"
+                name="tiktok"
+                value={formData.tiktok}
+                onChange={handleChange}
+                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-sm sm:text-base min-h-[44px]"
+                placeholder={t("form.tiktokPlaceholder")}
+              />
             </div>
 
             {/* Submit Button */}
             <div className="flex flex-col sm:flex-row gap-3">
               <button
-                type="button"
-                onClick={() => {
-                  setShowStep2(false);
-                  handleSubmit(new Event('submit') as any);
-                }}
+                type="submit"
+                disabled={isSubmitting}
                 className="flex-1 bg-white hover:bg-gray-50 text-primary border-2 border-primary font-semibold px-4 py-3 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-xl transition-all duration-200 text-sm sm:text-base min-h-[44px]"
               >
                 {t("form.skipStep2")}
@@ -477,7 +620,11 @@ export default function WaitlistForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 bg-gradient-to-r from-primary to-primary/90 hover:from-primary-dark hover:to-primary text-white font-semibold px-4 py-3 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 text-sm sm:text-base min-h-[44px]"
+                className={`flex-1 font-semibold px-4 py-3 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 text-sm sm:text-base min-h-[44px] ${
+                  formData.membershipType === "founders"
+                    ? "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white"
+                    : "bg-gradient-to-r from-primary to-primary/90 hover:from-primary-dark hover:to-primary text-white"
+                }`}
               >
                 {isSubmitting ? (
                   <span className="flex items-center justify-center gap-2">
@@ -486,6 +633,10 @@ export default function WaitlistForm() {
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
                     {t("form.submitting")}
+                  </span>
+                ) : formData.membershipType === "founders" ? (
+                  <span className="flex items-center justify-center gap-2">
+                    🏅 {t("form.completeSignupFounders")}
                   </span>
                 ) : (
                   t("form.completeSignup")
@@ -515,6 +666,117 @@ export default function WaitlistForm() {
           </div>
         </div>
       </div>
+
+      {/* Payment Modal (visual only) */}
+      {showPayment && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          {/* Blurred backdrop */}
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setShowPayment(false)}
+          />
+
+          {/* Modal */}
+          <div className="relative w-full max-w-md bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={() => setShowPayment(false)}
+              className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+              aria-label="Close"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-amber-300 to-amber-500 mb-3 shadow-lg">
+                <span className="text-3xl">🏅</span>
+              </div>
+              <h2 className="text-2xl font-bold text-dark mb-1">{t("payment.title")}</h2>
+              <p className="text-sm text-gray-600">{t("payment.subtitle")}</p>
+            </div>
+
+            {/* Order summary */}
+            <div className="bg-secondary rounded-xl p-4 mb-6 border border-gray-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm text-gray-600">{t("payment.item")}</span>
+                <span className="text-sm font-semibold text-dark">$5.00</span>
+              </div>
+              <div className="border-t border-gray-200 my-2" />
+              <div className="flex items-center justify-between">
+                <span className="text-base font-bold text-dark">{t("payment.total")}</span>
+                <span className="text-base font-bold text-amber-600">$5.00</span>
+              </div>
+            </div>
+
+            {/* Card details (visual only) */}
+            <div className="space-y-3 mb-6">
+              <div>
+                <label className="block text-xs font-semibold text-dark mb-1">{t("payment.cardName")}</label>
+                <input
+                  type="text"
+                  placeholder={t("payment.cardNamePlaceholder")}
+                  className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors text-sm min-h-[44px]"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-dark mb-1">{t("payment.cardNumber")}</label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="1234 5678 9012 3456"
+                    className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors text-sm min-h-[44px]"
+                  />
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 flex gap-1">
+                    <span className="text-lg">💳</span>
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-semibold text-dark mb-1">{t("payment.expiry")}</label>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="MM/YY"
+                    className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors text-sm min-h-[44px]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-dark mb-1">{t("payment.cvc")}</label>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="123"
+                    className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors text-sm min-h-[44px]"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => {
+                setShowPayment(false);
+                setIsSubmitted(true);
+              }}
+              className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold px-6 py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl active:scale-[0.98] text-base min-h-[44px]"
+            >
+              {t("payment.payButton")}
+            </button>
+
+            <p className="text-xs text-gray-500 text-center mt-3 flex items-center justify-center gap-1">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+              </svg>
+              {t("payment.secureNote")}
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
