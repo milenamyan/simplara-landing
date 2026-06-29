@@ -10,8 +10,8 @@
     "badge": "Ранний Доступ Доступен",
     "title": "Полный шкаф одежды.",
     "subtitle": "Нечего надеть.",
-    "joinWaitlist": "Join the Waitlist",
-    "joinFirst888": "Join FIRST 888 (Founders Club)",
+    "joinWaitlist": "Вступить в список ожидания",
+    "joinFirst888": "Вступить в FIRST 888 (Клуб Основателей)",
     "pushNotification": "Доброе утро. Я подобрал 3 образа на сегодня.",
     "outfit1": "Вариант 1: Casual",
     "outfit2": "Вариант 2: Business",
@@ -380,13 +380,13 @@
         "description": "Имена первых участников навсегда сохраняются в истории проекта. Первые 888 становятся частью истории SIMPLARA."
       }
     ],
-    "cta": "Become a Founder",
+    "cta": "Стать Основателем",
     "freeWaitlist": "Пока не готовы?",
     "freeWaitlistLink": "Присоединиться к бесплатному списку ожидания"
   },
   "waitlist": {
-    "title": "Join Waitlist.",
-    "titleHighlight": "Become a Founder.",
+    "title": "Список ожидания. ",
+    "titleHighlight": "Станьте Основателем.",
     "subtitle": "Присоединяйтесь к бесплатному списку ожидания для раннего доступа или станьте одним из первых 888 основателей.",
     "benefits": {
       "earlyAccess": "Обновления о запуске",
