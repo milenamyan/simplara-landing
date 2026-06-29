@@ -7,6 +7,9 @@ const nextConfig = {
   images: {
     domains: [],
   },
+  devIndicators: {
+    buildActivity: false,
+  },
 };
 
 export default withNextIntl(nextConfig);
