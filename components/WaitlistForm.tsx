@@ -1,5 +1,6 @@
 "use client";
 
+import { FOUNDERS_CLUB_ENABLED } from "@/lib/features";
 import { validateEmail, validateTelegram } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -7,10 +8,11 @@ import CustomSelect from "./CustomSelect";
 
 export default function WaitlistForm() {
   const t = useTranslations("waitlist");
+  const tFounders = useTranslations("foundersClub");
   
   const [formData, setFormData] = useState({
     // Step 1: Essential fields
-    membershipType: "", // "waitlist" or "founders"
+    membershipType: FOUNDERS_CLUB_ENABLED ? "" : "waitlist", // "waitlist" or "founders"
     name: "",
     email: "",
     telegram: "",
@@ -39,13 +41,19 @@ export default function WaitlistForm() {
   const isTelegramValid = validateTelegram(telegramValue);
   const showEmailError = emailTouched && !isEmailValid;
   const showTelegramError = telegramTouched && !isTelegramValid;
-  const isFounder = formData.membershipType === "founders";
+  const effectiveMembershipType = FOUNDERS_CLUB_ENABLED ? formData.membershipType : "waitlist";
+  const isFounder = effectiveMembershipType === "founders";
+  const canSubmitStep2 =
+    !!formData.gender &&
+    !!formData.ageRange &&
+    !!formData.wardrobeSize &&
+    !!formData.mainProblem;
   const canSubmitStep1 =
     isEmailValid &&
     isTelegramValid &&
     formData.name &&
     formData.city &&
-    formData.membershipType &&
+    (FOUNDERS_CLUB_ENABLED ? formData.membershipType : true) &&
     (isFounder || formData.mvpTester);
 
   // Keep the form/section in view across steps: step 2, payment, and success
@@ -61,7 +69,7 @@ export default function WaitlistForm() {
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "founders" || detail === "waitlist") {
+      if (detail === "waitlist" || (FOUNDERS_CLUB_ENABLED && detail === "founders")) {
         setFormData(prev => ({ ...prev, membershipType: detail }));
       }
     };
@@ -92,12 +100,17 @@ export default function WaitlistForm() {
     }
 
     // Step 2 - Submit everything
+    if (!canSubmitStep2) {
+      setError(t("form.step2RequiredError"));
+      return;
+    }
+
     setIsSubmitting(true);
     setError("");
     
     try {
       // Validate membershipType is selected
-      if (!formData.membershipType) {
+      if (!effectiveMembershipType) {
         throw new Error("Please select a membership type");
       }
 
@@ -117,7 +130,7 @@ export default function WaitlistForm() {
 
       // URL-encoded form fields are the most reliable format for Google Apps Script (e.parameter)
       const body = new URLSearchParams({
-        membershipType: formData.membershipType,
+        membershipType: effectiveMembershipType,
         name: formData.name,
         email: emailValue,
         telegram: telegramValue,
@@ -133,7 +146,7 @@ export default function WaitlistForm() {
 
       // Debug: Log what we're sending
       console.log("Submitting form data:", {
-        membershipType: formData.membershipType,
+        membershipType: effectiveMembershipType,
         name: formData.name,
         email: emailValue,
       });
@@ -182,33 +195,6 @@ export default function WaitlistForm() {
           <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6">
             {t("success.description")}
           </p>
-            <button
-              onClick={() => {
-                setIsSubmitted(false);
-                setShowStep2(false);
-                setShowPayment(false);
-                setError("");
-                setEmailTouched(false);
-                setTelegramTouched(false);
-                setFormData({
-                  membershipType: "",
-                  name: "",
-                  email: "",
-                  telegram: "",
-                  city: "",
-                  mvpTester: "",
-                  gender: "",
-                  ageRange: "",
-                  wardrobeSize: "",
-                  mainProblem: "",
-                  instagram: "",
-                  tiktok: "",
-                });
-              }}
-              className="text-primary hover:text-primary/80 font-semibold min-h-[44px]"
-            >
-              {t("success.submitAnother")}
-            </button>
           </div>
         </div>
       </section>
@@ -243,7 +229,11 @@ export default function WaitlistForm() {
                 </div>
                 <div className="bg-gradient-to-br from-primary/10 to-purple-50 rounded-xl p-3 sm:p-4 text-center border border-primary/20">
                   <div className="text-xl sm:text-2xl mb-1 sm:mb-2">💎</div>
-                  <p className="text-xs sm:text-sm font-semibold text-dark">{t("benefits.foundersClub")}</p>
+                  <p className="text-xs sm:text-sm font-semibold text-dark">
+                    {FOUNDERS_CLUB_ENABLED
+                      ? t("benefits.foundersClub")
+                      : tFounders("comingSoon.badge")}
+                  </p>
                 </div>
                 <div className="bg-gradient-to-br from-primary/10 to-purple-50 rounded-xl p-3 sm:p-4 text-center border border-primary/20">
                   <div className="text-xl sm:text-2xl mb-1 sm:mb-2">🎯</div>
@@ -259,12 +249,13 @@ export default function WaitlistForm() {
                   </div>
                 )}
 
-            {/* Membership Type Selection */}
+            {/* Membership Type Selection — hidden until Founders Club launches */}
+            {FOUNDERS_CLUB_ENABLED && (
             <div className="mb-6">
               <label className="block text-xs sm:text-sm font-semibold text-dark mb-3">
                 {t("form.membershipType")} {t("form.required")}
               </label>
-              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
+              <div className={`grid gap-3 sm:gap-4 ${FOUNDERS_CLUB_ENABLED ? "sm:grid-cols-2" : ""}`}>
                 {/* Free Waitlist Option */}
                 <button
                   type="button"
@@ -301,6 +292,8 @@ export default function WaitlistForm() {
                   </div>
                 </button>
 
+                {FOUNDERS_CLUB_ENABLED && (
+                <>
                 {/* Founders Club Option */}
                 <button
                   type="button"
@@ -339,7 +332,6 @@ export default function WaitlistForm() {
                     </div>
                   </div>
                 </button>
-              </div>
               {formData.membershipType === "founders" && (
                 <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-lg">
                   <p className="text-xs sm:text-sm text-amber-800">
@@ -347,7 +339,11 @@ export default function WaitlistForm() {
                   </p>
                 </div>
               )}
+                </>
+                )}
+              </div>
             </div>
+            )}
 
             {/* Name */}
             <div>
@@ -508,7 +504,7 @@ export default function WaitlistForm() {
             <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">{/* Gender */}
             <div>
               <label htmlFor="gender" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
-                {t("form.gender")}
+                {t("form.gender")} {t("form.required")}
               </label>
               <CustomSelect
                 value={formData.gender}
@@ -526,7 +522,7 @@ export default function WaitlistForm() {
             {/* Age Range */}
             <div>
               <label htmlFor="ageRange" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
-                {t("form.ageRange")}
+                {t("form.ageRange")} {t("form.required")}
               </label>
               <CustomSelect
                 value={formData.ageRange}
@@ -544,7 +540,7 @@ export default function WaitlistForm() {
             {/* Wardrobe Size */}
             <div>
               <label htmlFor="wardrobeSize" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
-                {t("form.wardrobeSize")}
+                {t("form.wardrobeSize")} {t("form.required")}
               </label>
               <CustomSelect
                 value={formData.wardrobeSize}
@@ -563,7 +559,7 @@ export default function WaitlistForm() {
             {/* Main Problem */}
             <div>
               <label htmlFor="mainProblem" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
-                {t("form.mainProblem")}
+                {t("form.mainProblem")} {t("form.required")}
               </label>
               <CustomSelect
                 value={formData.mainProblem}
@@ -615,14 +611,7 @@ export default function WaitlistForm() {
             <div className="flex flex-col sm:flex-row gap-3">
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="flex-1 bg-white hover:bg-gray-50 text-primary border-2 border-primary font-semibold px-4 py-3 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-xl transition-all duration-200 text-sm sm:text-base min-h-[44px]"
-              >
-                {t("form.skipStep2")}
-              </button>
-              <button
-                type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !canSubmitStep2}
                 className={`flex-1 font-semibold px-4 py-3 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 text-sm sm:text-base min-h-[44px] ${
                   formData.membershipType === "founders"
                     ? "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white"

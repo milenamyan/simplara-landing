@@ -382,7 +382,12 @@
     ],
     "cta": "Become a Founder",
     "freeWaitlist": "Not ready yet?",
-    "freeWaitlistLink": "Join the free waitlist"
+    "freeWaitlistLink": "Join the free waitlist",
+    "comingSoon": {
+      "badge": "Coming soon",
+      "message": "FIRST 888 (Founders Club) is launching soon. Join the free waitlist in the meantime to get early access updates.",
+      "cta": "Join the free waitlist"
+    }
   },
   "waitlist": {
     "title": "Join the Waitlist.",
@@ -412,7 +417,7 @@
       "step1Title": "Join the waitlist",
       "step1Subtitle": "Quick signup — takes 30 seconds",
       "step2Title": "Help LUMI understand your wardrobe better",
-      "step2Subtitle": "Optional details to personalize your experience (you can skip this)",
+      "step2Subtitle": "Required details to personalize your experience",
       "name": "Full Name",
       "namePlaceholder": "Enter your name",
       "email": "Email",
@@ -485,7 +490,8 @@
       "skipStep2": "Skip for now",
       "required": "*",
       "privacy": "By joining, you agree to receive updates about SIMPLARA. We respect your privacy and won't spam you.",
-      "step2Note": "This information helps us personalize SIMPLARA for you, but it's completely optional."
+      "step2Note": "Instagram and TikTok are optional. Everything else in this step is required.",
+      "step2RequiredError": "Please complete all required fields before continuing."
     },
     "payment": {
       "title": "Complete your Founder membership",
@@ -502,8 +508,7 @@
     },
     "success": {
       "title": "You're on the SIMPLARA early access list!",
-      "description": "Soon LUMI will help you rediscover your wardrobe. We'll reach out with exclusive early access and MVP testing opportunities.",
-      "submitAnother": "Submit another response"
+      "description": "Soon LUMI will help you rediscover your wardrobe. We'll reach out with exclusive early access and MVP testing opportunities."
     },
     "benefitsList": {
       "title": "Benefits for early users:",
@@ -551,7 +556,7 @@
       },
       {
         "question": "Will SIMPLARA be free?",
-        "answer": "We're planning a free tier with core features. And a premium subscription with advanced features such as: wardrobe classification, outfit challenges, LUMI Room customization, and expert consultations."
+        "answer": "We're planning a free tier with core features. And a premium subscription with advanced features such as: wardrobe classification, outfit challenges, LUMI room customization, and expert consultations."
       },
       {
         "question": "How is my data protected?",
