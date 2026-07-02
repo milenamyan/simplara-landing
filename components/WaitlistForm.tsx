@@ -732,7 +732,7 @@ export default function WaitlistForm() {
         <div className="mt-6 sm:mt-8 text-center">
           <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-3 px-4">{t("benefitsList.title")}</p>
           <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
-            {[0, 1, 2, 3].map((index) => (
+            {[ 1, 2, 3].map((index) => (
               <span
                 key={index}
                 className="bg-white border border-gray-200 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-gray-700"

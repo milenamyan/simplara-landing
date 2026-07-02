@@ -394,7 +394,7 @@
     "titleHighlight": "Become a Founder.",
     "subtitle": "Join our free waitlist for early access or become one of the first 888 founding members.",
     "benefits": {
-      "earlyAccess": "Early Access Updates",
+      "earlyAccess": "Early Access",
       "foundersClub": "Founders Club Info",
       "shapeProduct": "Shape the Product"
     },
@@ -515,7 +515,7 @@
     "benefitsList": {
       "title": "Benefits for early users:",
       "items": [
-        "Product launch updates",
+        "Early access updates",
         "MVP testing opportunities",
         "Influence product development",
         "Option to upgrade to Founders Club anytime"

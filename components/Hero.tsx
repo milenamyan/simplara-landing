@@ -101,7 +101,7 @@ export default function Hero() {
                 <div className="relative">
                   <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full bg-gradient-to-br from-primary/10 to-accent/20 flex items-center justify-center border-4 border-white shadow-xl overflow-hidden">
                     <video
-                      className="w-full h-full object-cover scale-[1.35] translate-x-1.5"
+                      className="w-full h-full object-cover scale-[1.35] translate-x-1.5  "
                       autoPlay
                       muted
                       loop
