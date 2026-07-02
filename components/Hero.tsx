@@ -100,14 +100,17 @@ export default function Hero() {
               <div className="pt-16 sm:pt-20 pb-8 sm:pb-10 flex flex-col items-center justify-center">
                 <div className="relative">
                   <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full bg-gradient-to-br from-primary/10 to-accent/20 flex items-center justify-center border-4 border-white shadow-xl overflow-hidden">
-                    <Image
-                      src="/assets/lumi.png"
-                      alt="LUMI - AI style companion"
-                      width={256}
-                      height={256}
-                      className="w-full h-full object-cover"
-                      priority
-                    />
+                    <video
+                      className="w-full h-full object-cover scale-[1.35] translate-x-1.5"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-label="LUMI - AI style companion"
+                    >
+                      <source src="/assets/lumi.mp4" type="video/mp4" />
+                    </video>
                   </div>
                   <button
                     type="button"

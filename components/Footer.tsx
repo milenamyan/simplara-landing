@@ -56,6 +56,12 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
+            <a
+              href="mailto:support@simplara.org"
+              className="inline-flex mt-4 text-sm sm:text-base text-gray-300 hover:text-white transition-colors"
+            >
+              support@simplara.org
+            </a>
           </div>
         </div>
 
