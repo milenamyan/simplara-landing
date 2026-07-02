@@ -508,7 +508,9 @@
     },
     "success": {
       "title": "You're on the SIMPLARA early access list!",
-      "description": "Soon LUMI will help you rediscover your wardrobe. We'll reach out with exclusive early access and MVP testing opportunities."
+      "description": "Soon LUMI will help you rediscover your wardrobe. We'll reach out with exclusive early access and MVP testing opportunities.",
+      "alreadySignedUpTitle": "You're already signed up!",
+      "alreadySignedUp": "We’ve already received your response, so you can’t register again from this browser."
     },
     "benefitsList": {
       "title": "Benefits for early users:",

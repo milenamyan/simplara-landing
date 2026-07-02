@@ -17,6 +17,10 @@ function doPost(e) {
       data.mainProblem || "",
       data.instagram || "",
       data.tiktok || "",
+      data.ip || "",
+      data.geoCountry || "",
+      data.geoRegion || "",
+      data.geoCity || "",
     ]);
 
     return ContentService.createTextOutput(
@@ -66,6 +70,10 @@ function testPost() {
       mainProblem: "nothing-to-wear",
       instagram: "@testuser",
       tiktok: "@testuser",
+      ip: "127.0.0.1",
+      geoCountry: "Test Country",
+      geoRegion: "Test Region",
+      geoCity: "Test City",
     },
   });
 

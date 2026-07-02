@@ -6,6 +6,20 @@ import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import CustomSelect from "./CustomSelect";
 
+const SUBMITTED_COOKIE = "simplara_waitlist_submitted";
+
+const hasSubmittedCookie = () => {
+  if (typeof document === "undefined") {
+    return false;
+  }
+
+  return document.cookie.split("; ").some((row) => row.startsWith(`${SUBMITTED_COOKIE}=true`));
+};
+
+const setSubmittedCookie = () => {
+  document.cookie = `${SUBMITTED_COOKIE}=true; max-age=${60 * 60 * 24 * 365}; path=/; samesite=lax`;
+};
+
 export default function WaitlistForm() {
   const t = useTranslations("waitlist");
   const tFounders = useTranslations("foundersClub");
@@ -26,8 +40,15 @@ export default function WaitlistForm() {
     instagram: "",
     tiktok: "",
   });
+  const [geoData, setGeoData] = useState({
+    ip: "",
+    country: "",
+    region: "",
+    city: "",
+  });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [hasAlreadySignedUp, setHasAlreadySignedUp] = useState(false);
   const [showStep2, setShowStep2] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,7 +68,8 @@ export default function WaitlistForm() {
     !!formData.gender &&
     !!formData.ageRange &&
     !!formData.wardrobeSize &&
-    !!formData.mainProblem;
+    !!formData.mainProblem &&
+    !!formData.instagram.trim();
   const canSubmitStep1 =
     isEmailValid &&
     isTelegramValid &&
@@ -64,6 +86,44 @@ export default function WaitlistForm() {
         ?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [showStep2, showPayment, isSubmitted]);
+
+  useEffect(() => {
+    if (hasSubmittedCookie()) {
+      setHasAlreadySignedUp(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    const loadGeoData = async () => {
+      try {
+        const response = await fetch("https://ipapi.co/json/");
+        if (!response.ok) {
+          return;
+        }
+
+        const data = await response.json();
+
+        if (!isCancelled) {
+          setGeoData({
+            ip: data.ip || "",
+            country: data.country_name || data.country_code || "",
+            region: data.region || "",
+            city: data.city || "",
+          });
+        }
+      } catch {
+        // Ignore geo lookup failures and submit the form without location data.
+      }
+    };
+
+    void loadGeoData();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, []);
 
   // Allow other sections (e.g. "Become a Founder" buttons) to preselect a membership type
   useEffect(() => {
@@ -142,6 +202,10 @@ export default function WaitlistForm() {
         mainProblem: formData.mainProblem,
         instagram: formData.instagram.trim(),
         tiktok: formData.tiktok.trim(),
+        ip: geoData.ip,
+        geoCountry: geoData.country,
+        geoRegion: geoData.region,
+        geoCity: geoData.city,
       });
 
       // Debug: Log what we're sending
@@ -167,6 +231,8 @@ export default function WaitlistForm() {
       if (!result.success) {
         throw new Error(result.error || "Submission failed");
       }
+
+      setSubmittedCookie();
 
       // Founders go to the payment step; waitlist users go straight to success
       if (isFounder) {
@@ -195,6 +261,24 @@ export default function WaitlistForm() {
           <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6">
             {t("success.description")}
           </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (hasAlreadySignedUp) {
+    return (
+      <section id="waitlist" className="scroll-mt-20 py-8 sm:py-10 lg:py-14 bg-gradient-to-b from-primary to-primary/90">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl">
+            <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">🎉</div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-2 sm:mb-3">
+              {t("success.alreadySignedUpTitle")}
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600">
+              {t("success.alreadySignedUp")}
+            </p>
           </div>
         </div>
       </section>
@@ -578,12 +662,13 @@ export default function WaitlistForm() {
             {/* Instagram (Optional) */}
             <div>
               <label htmlFor="instagram" className="block text-xs sm:text-sm font-semibold text-dark mb-1 sm:mb-1.5">
-                {t("form.instagram")} <span className="text-gray-400">{t("form.socialMediaOptional")}</span>
+                {t("form.instagram")} {t("form.required")}
               </label>
               <input
                 type="text"
                 id="instagram"
                 name="instagram"
+                required
                 value={formData.instagram}
                 onChange={handleChange}
                 className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-sm sm:text-base min-h-[44px]"
