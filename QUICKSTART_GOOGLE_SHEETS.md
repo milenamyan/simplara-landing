@@ -18,6 +18,10 @@ Your waitlist form now saves submissions directly to Google Sheets using Google 
    - F: `Gender`
    - G: `Age Range`
    - H: `MVP Tester`
+   - I: `Wardrobe Size`
+   - J: `Main Problem`
+   - K: `Social Media`
+   - L: `TG Channel Access`
 
 ### 2. Deploy Google Apps Script
 1. In your sheet: **Extensions** → **Apps Script**
@@ -65,10 +69,10 @@ The following fields are sent to Google Sheets:
 - ✅ Gender
 - ✅ Age Range
 - ✅ MVP Tester
-
 - ✅ Wardrobe Size
 - ✅ Main Problem
 - ✅ Social Media
+- ✅ TG Channel Access
 
 ## Files Modified
 

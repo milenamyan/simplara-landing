@@ -428,6 +428,7 @@
       "telegramInvalid": "Введите корректное имя пользователя Telegram (например, @username).",
       "city": "Город",
       "cityPlaceholder": "Ваш город",
+      "tgChannelAccess": "Хочу получить доступ в Telegram-канал с актуальными новостями о приложении",
       "gender": "Пол",
       "genderPlaceholder": "Выберите пол",
       "genderOptions": {

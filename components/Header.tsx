@@ -1,24 +1,14 @@
 "use client";
 
-import { useTranslations, useLocale } from "next-intl";
-import { Link, usePathname, useRouter } from "@/i18n/navigation";
-import { routing } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import Image from "next/image";
 import { useState } from "react";
 
-type Locale = (typeof routing.locales)[number];
-
 export default function Header() {
   const t = useTranslations("header");
-  const locale = useLocale();
-  const router = useRouter();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const switchLanguage = (newLocale: Locale) => {
-    router.replace(pathname, { locale: newLocale });
-    setIsMenuOpen(false);
-  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -42,11 +32,6 @@ export default function Header() {
     }
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  const languages: { code: Locale; name: string }[] = [
-    { code: "en", name: "English" },
-    { code: "ru", name: "Русский" },
-  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
@@ -84,27 +69,6 @@ export default function Header() {
             >
               {t("faq")}
             </button>
-
-            {/* Language Switcher */}
-            <div className="flex items-center gap-1">
-              {languages.map((lang, index) => (
-                <div key={lang.code} className="flex items-center">
-                  <button
-                    onClick={() => switchLanguage(lang.code)}
-                    className={`text-sm font-medium transition-colors ${
-                      locale === lang.code
-                        ? "text-primary"
-                        : "text-gray-600 hover:text-gray-800"
-                    }`}
-                  >
-                    {lang.code.toUpperCase()}
-                  </button>
-                  {index < languages.length - 1 && (
-                    <span className="text-gray-400 mx-1">/</span>
-                  )}
-                </div>
-              ))}
-            </div>
 
             <button
               onClick={() => scrollToSection("founders-club")}
@@ -181,27 +145,6 @@ export default function Header() {
               >
                 {t("joinWaitlist")}
               </button>
-
-              {/* Language Switcher */}
-              <div className="flex items-center justify-center gap-1 pt-3 mt-1 border-t border-gray-100">
-                {languages.map((lang, index) => (
-                  <div key={lang.code} className="flex items-center">
-                    <button
-                      onClick={() => switchLanguage(lang.code)}
-                      className={`text-sm font-medium transition-colors px-2 min-h-[44px] ${
-                        locale === lang.code
-                          ? "text-primary"
-                          : "text-gray-600 hover:text-gray-800"
-                      }`}
-                    >
-                      {lang.code.toUpperCase()}
-                    </button>
-                    {index < languages.length - 1 && (
-                      <span className="text-gray-400">/</span>
-                    )}
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         )}

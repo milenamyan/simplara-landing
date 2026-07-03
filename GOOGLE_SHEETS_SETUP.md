@@ -20,6 +20,7 @@ This guide will help you set up Google Sheets to receive waitlist form submissio
    - Column J: `Wardrobe Size`
    - Column K: `Main Problem`
    - Column L: `Social Media`
+   - Column M: `TG Channel Access`
 
 ## Step 2: Create Google Apps Script
 
@@ -69,7 +70,7 @@ The Web App URL stays the same — you do **not** need a new URL.
 
 1. Run the `testPost` function in Apps Script
 2. Check **View** → **Execution log** — you should see `{"success":true,...}`
-3. Confirm a test row appears with **all 12 fields** filled (including Membership Type, Email, Telegram, Wardrobe Size, Main Problem, Social Media)
+3. Confirm a test row appears with **all 13 fields** filled (including Membership Type, Email, Telegram, Wardrobe Size, Main Problem, Social Media, and TG Channel Access)
 4. Open your Web App URL in a browser — you should see `{"success":true,"version":2,...}`. If you do not see `version: 2`, the new deployment is not live yet.
 
 ## Step 4: Update Environment Variables

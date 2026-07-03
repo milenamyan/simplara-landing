@@ -31,6 +31,7 @@ export default function WaitlistForm() {
     email: "",
     telegram: "",
     city: "",
+    tgChannelAccess: false,
     mvpTester: "",
     // Step 2: Optional detailed fields
     gender: "",
@@ -75,6 +76,7 @@ export default function WaitlistForm() {
     isTelegramValid &&
     formData.name &&
     formData.city &&
+    formData.tgChannelAccess &&
     (FOUNDERS_CLUB_ENABLED ? formData.membershipType : true) &&
     (isFounder || formData.mvpTester);
 
@@ -195,6 +197,7 @@ export default function WaitlistForm() {
         email: emailValue,
         telegram: telegramValue,
         city: formData.city,
+      tgChannelAccess: formData.tgChannelAccess ? "yes" : "no",
         gender: formData.gender,
         ageRange: formData.ageRange,
         mvpTester: mvpTesterValue,
@@ -204,7 +207,6 @@ export default function WaitlistForm() {
         tiktok: formData.tiktok.trim(),
         ip: geoData.ip,
         geoCountry: geoData.country,
-        geoRegion: geoData.region,
         geoCity: geoData.city,
       });
 
@@ -551,6 +553,19 @@ export default function WaitlistForm() {
                 />
               </div>
             )}
+
+            {/* Telegram channel access consent */}
+            <label className="flex items-start gap-3 rounded-xl border border-gray-200 bg-gray-50 p-3 sm:p-4 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={formData.tgChannelAccess}
+                onChange={(e) => setFormData((prev) => ({ ...prev, tgChannelAccess: e.target.checked }))}
+                className="mt-1 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+              />
+              <span className="text-xs sm:text-sm text-dark leading-5">
+                {t("form.tgChannelAccess")} {t("form.required")}
+              </span>
+            </label>
 
             {/* Submit Button */}
             <button

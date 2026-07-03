@@ -428,6 +428,7 @@
       "telegramInvalid": "Please enter a valid Telegram username (e.g. @username).",
       "city": "City",
       "cityPlaceholder": "Your city",
+      "tgChannelAccess": "I want access to the Telegram channel with the latest app updates",
       "gender": "Gender",
       "genderPlaceholder": "Select gender",
       "genderOptions": {

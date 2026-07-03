@@ -17,9 +17,9 @@ function doPost(e) {
       data.mainProblem || "",
       data.instagram || "",
       data.tiktok || "",
+      data.tgChannelAccess || "",
       data.ip || "",
       data.geoCountry || "",
-      data.geoRegion || "",
       data.geoCity || "",
     ]);
 
@@ -63,6 +63,7 @@ function testPost() {
       email: "test@example.com",
       telegram: "@testuser",
       city: "Test City",
+      tgChannelAccess: "yes",
       gender: "female",
       ageRange: "25-34",
       mvpTester: "yes",
@@ -72,8 +73,7 @@ function testPost() {
       tiktok: "@testuser",
       ip: "127.0.0.1",
       geoCountry: "Test Country",
-      geoRegion: "Test Region",
-      geoCity: "Test City",
+      geoCity: "Test Geo City",
     },
   });
 

@@ -4,6 +4,7 @@ export interface WaitlistFormData {
   email: string;
   telegram: string;
   city: string;
+  tgChannelAccess: boolean;
   gender: "female" | "male" | "non-binary" | "prefer-not-to-say" | "";
   ageRange: "18-24" | "25-34" | "35-44" | "45+" | "";
   mvpTester: "yes" | "no" | "";
