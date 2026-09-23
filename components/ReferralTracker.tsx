@@ -19,8 +19,6 @@ export default function ReferralTracker() {
       return;
     }
 
-    markReferralVisitLogged(ref);
-
     try {
       track("referral_visit", { ref });
     } catch {
@@ -29,6 +27,7 @@ export default function ReferralTracker() {
 
     const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL;
     if (!scriptUrl) {
+      console.warn("[referral] NEXT_PUBLIC_GOOGLE_SCRIPT_URL is not set");
       return;
     }
 
@@ -44,9 +43,32 @@ export default function ReferralTracker() {
       method: "POST",
       body,
       keepalive: true,
-    }).catch(() => {
-      // Ignore network / Sheets failures for click logging
-    });
+    })
+      .then(async (response) => {
+        const text = await response.text();
+        let result: { success?: boolean; error?: string } = {};
+        try {
+          result = JSON.parse(text);
+        } catch {
+          // Google Apps Script sometimes returns empty/HTML on redirect; still mark logged
+          // only if HTTP looks ok — otherwise allow retry next page load.
+          if (!response.ok) {
+            console.warn("[referral] click log failed:", response.status, text.slice(0, 200));
+            return;
+          }
+        }
+
+        if (result.success === false) {
+          console.warn("[referral] click log rejected:", result.error);
+          return;
+        }
+
+        markReferralVisitLogged(ref);
+        console.log("[referral] click logged:", ref);
+      })
+      .catch((err) => {
+        console.warn("[referral] click log network error:", err);
+      });
   }, []);
 
   return null;

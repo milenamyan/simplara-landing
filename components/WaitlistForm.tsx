@@ -208,8 +208,6 @@ export default function WaitlistForm() {
         instagram: formData.instagram.trim(),
         tiktok: formData.tiktok.trim(),
         ip: geoData.ip,
-        geoCountry: geoData.country,
-        geoCity: geoData.city,
         ref: getStoredRef(),
       });
 

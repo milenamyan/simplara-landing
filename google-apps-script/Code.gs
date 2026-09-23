@@ -16,8 +16,12 @@ function doPost(e) {
 }
 
 function logWaitlistSignup_(data) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const sheet = getWaitlistSheet_();
+  ensureWaitlistHeaders_(sheet);
 
+  // Column order must match the sheet headers exactly:
+  // Timestamp, Membership Type, Name, Email, Telegram, City, Gender, Age Range,
+  // MVP Tester, Wardrobe Size, Main Problem, Instagram, TikTok, TG Access, IP, Ref
   sheet.appendRow([
     new Date(),
     data.membershipType || "",
@@ -34,8 +38,6 @@ function logWaitlistSignup_(data) {
     data.tiktok || "",
     data.tgChannelAccess || "",
     data.ip || "",
-    data.geoCountry || "",
-    data.geoCity || "",
     data.ref || "",
   ]);
 }
@@ -49,13 +51,59 @@ function logReferralClick_(data) {
     "User Agent",
   ]);
 
+  const ref = (data.ref || "").toString().trim();
+  if (!ref) {
+    throw new Error("Missing ref for referral_click");
+  }
+
   sheet.appendRow([
     new Date(),
-    data.ref || "",
+    ref,
     data.path || "",
     data.pageReferrer || "",
     data.userAgent || "",
   ]);
+}
+
+function getWaitlistSheet_() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  return (
+    ss.getSheetByName("Waitlist") ||
+    ss.getSheetByName("Sheet1") ||
+    ss.getActiveSheet()
+  );
+}
+
+function ensureWaitlistHeaders_(sheet) {
+  const headers = [
+    "Timestamp",
+    "Membership Type",
+    "Name",
+    "Email",
+    "Telegram",
+    "City",
+    "Gender",
+    "Age Range",
+    "MVP Tester",
+    "Wardrobe Size",
+    "Main Problem",
+    "Instagram",
+    "TikTok",
+    "TG Access",
+    "IP",
+    "Ref",
+  ];
+
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(headers);
+    return;
+  }
+
+  // Ensure Ref header exists in column P (16)
+  const refHeader = sheet.getRange(1, 16).getValue();
+  if (!refHeader) {
+    sheet.getRange(1, 16).setValue("Ref");
+  }
 }
 
 function getOrCreateSheet_(name, headers) {
@@ -93,7 +141,7 @@ function jsonResponse_(payload) {
 function doGet() {
   return jsonResponse_({
     success: true,
-    version: 4,
+    version: 5,
     message: "SIMPLARA waitlist + referral handler is running",
   });
 }
@@ -101,22 +149,21 @@ function doGet() {
 function testPost() {
   const result = doPost({
     parameter: {
-      membershipType: "founders",
+      type: "waitlist",
+      membershipType: "waitlist",
       name: "Test User",
       email: "test@example.com",
       telegram: "@testuser",
-      city: "Test City",
+      city: "Yerevan",
       tgChannelAccess: "yes",
       gender: "female",
       ageRange: "25-34",
-      mvpTester: "yes",
+      mvpTester: "MVP Tester",
       wardrobeSize: "51-100",
       mainProblem: "nothing-to-wear",
       instagram: "@testuser",
       tiktok: "@testuser",
       ip: "127.0.0.1",
-      geoCountry: "Test Country",
-      geoCity: "Test Geo City",
       ref: "dinul_hakobyann",
     },
   });
