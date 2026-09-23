@@ -1,6 +1,7 @@
 "use client";
 
 import { FOUNDERS_CLUB_ENABLED } from "@/lib/features";
+import { getStoredRef } from "@/lib/referral";
 import { validateEmail, validateTelegram } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -192,12 +193,13 @@ export default function WaitlistForm() {
 
       // URL-encoded form fields are the most reliable format for Google Apps Script (e.parameter)
       const body = new URLSearchParams({
+        type: "waitlist",
         membershipType: effectiveMembershipType,
         name: formData.name,
         email: emailValue,
         telegram: telegramValue,
         city: formData.city,
-      tgChannelAccess: formData.tgChannelAccess ? "yes" : "no",
+        tgChannelAccess: formData.tgChannelAccess ? "yes" : "no",
         gender: formData.gender,
         ageRange: formData.ageRange,
         mvpTester: mvpTesterValue,
@@ -208,6 +210,7 @@ export default function WaitlistForm() {
         ip: geoData.ip,
         geoCountry: geoData.country,
         geoCity: geoData.city,
+        ref: getStoredRef(),
       });
 
       // Debug: Log what we're sending

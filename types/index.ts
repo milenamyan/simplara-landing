@@ -12,6 +12,7 @@ export interface WaitlistFormData {
   mainProblem: "nothing-to-wear" | "unused-items" | "no-combinations" | "want-organize" | "other" | "";
   instagram?: string;
   tiktok?: string;
+  ref?: string;
 }
 
 // API response types

@@ -21,6 +21,21 @@ This guide will help you set up Google Sheets to receive waitlist form submissio
    - Column K: `Main Problem`
    - Column L: `Social Media`
    - Column M: `TG Channel Access`
+   - … (existing geo columns as already in your sheet)
+   - Last column: `Ref` (influencer referral id, e.g. `dinul_hakobyann`)
+
+The script will also auto-create a second tab named **`ReferralClicks`** for link opens (even without signup).
+
+## Referral links
+
+Give each influencer a unique URL:
+
+- `https://simplara.org/?ref=dinul_hakobyann`
+- `https://simplara.org/?ref=_ella__99`
+
+Any `?ref=` value is stored (letters, numbers, `_`, `-`). Visits are logged once per browser session to `ReferralClicks`; signups include the same `ref` on the waitlist sheet. Vercel Analytics also receives a `referral_visit` custom event with `{ ref }`.
+
+After updating `Code.gs`, redeploy the Apps Script (**Manage deployments** → **New version**). Confirm `doGet` returns `"version": 4`.
 
 ## Step 2: Create Google Apps Script
 
@@ -71,7 +86,8 @@ The Web App URL stays the same — you do **not** need a new URL.
 1. Run the `testPost` function in Apps Script
 2. Check **View** → **Execution log** — you should see `{"success":true,...}`
 3. Confirm a test row appears with **all 13 fields** filled (including Membership Type, Email, Telegram, Wardrobe Size, Main Problem, Social Media, and TG Channel Access)
-4. Open your Web App URL in a browser — you should see `{"success":true,"version":2,...}`. If you do not see `version: 2`, the new deployment is not live yet.
+4. Open your Web App URL in a browser — you should see `{"success":true,"version":4,...}`. If you do not see `version: 4`, the new deployment is not live yet.
+5. Optionally run `testReferralClick` — a row should appear on the **ReferralClicks** tab.
 
 ## Step 4: Update Environment Variables
 

@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { routing } from '@/i18n/routing';
+import ReferralTracker from '@/components/ReferralTracker';
 import ScrollToTop from '@/components/ScrollToTop';
 import "../globals.css";
 
@@ -71,6 +72,7 @@ export default async function LocaleLayout({
     <html lang={locale} className={inter.variable}>
       <body>
         <ScrollToTop />
+        <ReferralTracker />
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
