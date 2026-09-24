@@ -16,12 +16,23 @@ export default function ReferralTracker() {
   const hasRun = useRef(false);
 
   useEffect(() => {
+    console.log("[referral] ReferralTracker mounted");
+    
     if (hasRun.current) {
+      console.log("[referral] Already ran in this component instance");
       return;
     }
 
     const ref = captureRefFromUrl();
-    if (!ref || hasLoggedReferralVisit(ref)) {
+    console.log("[referral] Captured ref:", ref || "(none)");
+    
+    if (!ref) {
+      console.log("[referral] No ref in URL, skipping");
+      return;
+    }
+
+    if (hasLoggedReferralVisit(ref)) {
+      console.log("[referral] Already logged this session:", ref);
       return;
     }
 
@@ -31,11 +42,14 @@ export default function ReferralTracker() {
 
     try {
       track("referral_visit", { ref });
-    } catch {
-      // Analytics must never break the page
+      console.log("[referral] Sent to Vercel Analytics:", ref);
+    } catch (err) {
+      console.warn("[referral] Vercel Analytics error:", err);
     }
 
     const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL;
+    console.log("[referral] Script URL:", scriptUrl ? "SET" : "NOT SET");
+    
     if (!scriptUrl) {
       console.warn("[referral] NEXT_PUBLIC_GOOGLE_SCRIPT_URL is not set");
       return;
