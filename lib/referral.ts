@@ -16,7 +16,7 @@ export function captureRefFromUrl(): string {
 
   if (fromUrl) {
     try {
-      sessionStorage.setItem(REF_STORAGE_KEY, fromUrl);
+      localStorage.setItem(REF_STORAGE_KEY, fromUrl);
     } catch {
       // Ignore storage failures (private mode, etc.)
     }
@@ -29,7 +29,7 @@ export function captureRefFromUrl(): string {
 export function getStoredRef(): string {
   if (typeof window === "undefined") return "";
   try {
-    return sanitizeRef(sessionStorage.getItem(REF_STORAGE_KEY));
+    return sanitizeRef(localStorage.getItem(REF_STORAGE_KEY));
   } catch {
     return "";
   }
@@ -38,7 +38,7 @@ export function getStoredRef(): string {
 export function hasLoggedReferralVisit(ref: string): boolean {
   if (typeof window === "undefined" || !ref) return true;
   try {
-    return sessionStorage.getItem(`${REF_VISIT_LOGGED_PREFIX}${ref}`) === "1";
+    return localStorage.getItem(`${REF_VISIT_LOGGED_PREFIX}${ref}`) === "1";
   } catch {
     return false;
   }
@@ -47,7 +47,7 @@ export function hasLoggedReferralVisit(ref: string): boolean {
 export function markReferralVisitLogged(ref: string): void {
   if (typeof window === "undefined" || !ref) return;
   try {
-    sessionStorage.setItem(`${REF_VISIT_LOGGED_PREFIX}${ref}`, "1");
+    localStorage.setItem(`${REF_VISIT_LOGGED_PREFIX}${ref}`, "1");
   } catch {
     // Ignore
   }
