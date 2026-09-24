@@ -8,6 +8,11 @@ function doPost(e) {
       return jsonResponse_({ success: true, message: "Referral click saved" });
     }
 
+    if (type === "page_view") {
+      logPageView_(data);
+      return jsonResponse_({ success: true, message: "Page view logged" });
+    }
+
     logWaitlistSignup_(data);
     return jsonResponse_({ success: true, message: "Data saved successfully" });
   } catch (error) {
@@ -67,16 +72,55 @@ function logReferralClick_(data) {
   bumpReferralCount_(ref);
 }
 
-function bumpReferralCount_(ref) {
+function logPageView_(data) {
+  const ref = (data.ref || "").toString().trim();
+  if (!ref) {
+    throw new Error("Missing ref for page_view");
+  }
+
+  // Increment total visits counter
+  bumpPageViewCount_(ref);
+}
+
+function bumpPageViewCount_(ref) {
   const sheet = getOrCreateSheet_("ReferralTotals", [
     "Ref",
-    "Clicks",
-    "Last Click",
+    "Unique Visitors",
+    "Total Visits",
+    "Last Visit",
   ]);
 
   const lastRow = sheet.getLastRow();
   if (lastRow < 2) {
-    sheet.appendRow([ref, 1, new Date()]);
+    sheet.appendRow([ref, 0, 1, new Date()]);
+    return;
+  }
+
+  const refs = sheet.getRange(2, 1, lastRow - 1, 1).getValues();
+  for (var i = 0; i < refs.length; i++) {
+    if (String(refs[i][0]).toLowerCase() === ref.toLowerCase()) {
+      var row = i + 2;
+      var current = Number(sheet.getRange(row, 3).getValue()) || 0;
+      sheet.getRange(row, 3).setValue(current + 1);
+      sheet.getRange(row, 4).setValue(new Date());
+      return;
+    }
+  }
+
+  sheet.appendRow([ref, 0, 1, new Date()]);
+}
+
+function bumpReferralCount_(ref) {
+  const sheet = getOrCreateSheet_("ReferralTotals", [
+    "Ref",
+    "Unique Visitors",
+    "Total Visits",
+    "Last Visit",
+  ]);
+
+  const lastRow = sheet.getLastRow();
+  if (lastRow < 2) {
+    sheet.appendRow([ref, 1, 0, new Date()]);
     return;
   }
 
@@ -86,12 +130,12 @@ function bumpReferralCount_(ref) {
       var row = i + 2;
       var current = Number(sheet.getRange(row, 2).getValue()) || 0;
       sheet.getRange(row, 2).setValue(current + 1);
-      sheet.getRange(row, 3).setValue(new Date());
+      sheet.getRange(row, 4).setValue(new Date());
       return;
     }
   }
 
-  sheet.appendRow([ref, 1, new Date()]);
+  sheet.appendRow([ref, 1, 0, new Date()]);
 }
 
 function getWaitlistSheet_() {
