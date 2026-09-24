@@ -6,18 +6,28 @@ import {
   markReferralVisitLogged,
 } from "@/lib/referral";
 import { track } from "@vercel/analytics";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * Captures ?ref= from the URL, stores it for waitlist attribution,
  * logs one visit per session to Google Sheets, and sends a Vercel custom event.
  */
 export default function ReferralTracker() {
+  const hasRun = useRef(false);
+
   useEffect(() => {
+    if (hasRun.current) {
+      return;
+    }
+
     const ref = captureRefFromUrl();
     if (!ref || hasLoggedReferralVisit(ref)) {
       return;
     }
+
+    // Mark as logged immediately to prevent duplicate requests
+    hasRun.current = true;
+    markReferralVisitLogged(ref);
 
     try {
       track("referral_visit", { ref });
@@ -50,8 +60,6 @@ export default function ReferralTracker() {
         try {
           result = JSON.parse(text);
         } catch {
-          // Google Apps Script sometimes returns empty/HTML on redirect; still mark logged
-          // only if HTTP looks ok — otherwise allow retry next page load.
           if (!response.ok) {
             console.warn("[referral] click log failed:", response.status, text.slice(0, 200));
             return;
@@ -63,7 +71,6 @@ export default function ReferralTracker() {
           return;
         }
 
-        markReferralVisitLogged(ref);
         console.log("[referral] click logged:", ref);
       })
       .catch((err) => {
