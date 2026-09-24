@@ -19,9 +19,7 @@ function logWaitlistSignup_(data) {
   const sheet = getWaitlistSheet_();
   ensureWaitlistHeaders_(sheet);
 
-  // Column order must match the sheet headers exactly:
-  // Timestamp, Membership Type, Name, Email, Telegram, City, Gender, Age Range,
-  // MVP Tester, Wardrobe Size, Main Problem, Instagram, TikTok, TG Access, IP, Ref
+  // A-P: Timestamp … IP, Ref
   sheet.appendRow([
     new Date(),
     data.membershipType || "",
@@ -43,7 +41,13 @@ function logWaitlistSignup_(data) {
 }
 
 function logReferralClick_(data) {
-  const sheet = getOrCreateSheet_("ReferralClicks", [
+  const ref = (data.ref || "").toString().trim();
+  if (!ref) {
+    throw new Error("Missing ref for referral_click");
+  }
+
+  // Dedicated clicks sheet
+  const clicksSheet = getOrCreateSheet_("ReferralClicks", [
     "Timestamp",
     "Ref",
     "Path",
@@ -51,22 +55,59 @@ function logReferralClick_(data) {
     "User Agent",
   ]);
 
-  const ref = (data.ref || "").toString().trim();
-  if (!ref) {
-    throw new Error("Missing ref for referral_click");
-  }
-
-  sheet.appendRow([
+  clicksSheet.appendRow([
     new Date(),
     ref,
     data.path || "",
     data.pageReferrer || "",
     data.userAgent || "",
   ]);
+
+  // Also bump a simple per-ref counter sheet (easy totals)
+  bumpReferralCount_(ref);
+}
+
+function bumpReferralCount_(ref) {
+  const sheet = getOrCreateSheet_("ReferralTotals", [
+    "Ref",
+    "Clicks",
+    "Last Click",
+  ]);
+
+  const lastRow = sheet.getLastRow();
+  if (lastRow < 2) {
+    sheet.appendRow([ref, 1, new Date()]);
+    return;
+  }
+
+  const refs = sheet.getRange(2, 1, lastRow - 1, 1).getValues();
+  for (var i = 0; i < refs.length; i++) {
+    if (String(refs[i][0]).toLowerCase() === ref.toLowerCase()) {
+      var row = i + 2;
+      var current = Number(sheet.getRange(row, 2).getValue()) || 0;
+      sheet.getRange(row, 2).setValue(current + 1);
+      sheet.getRange(row, 3).setValue(new Date());
+      return;
+    }
+  }
+
+  sheet.appendRow([ref, 1, new Date()]);
 }
 
 function getWaitlistSheet_() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
+  // Prefer the sheet that already has waitlist headers / data
+  var sheets = ss.getSheets();
+  for (var i = 0; i < sheets.length; i++) {
+    var name = sheets[i].getName();
+    if (name === "ReferralClicks" || name === "ReferralTotals") {
+      continue;
+    }
+    var header = String(sheets[i].getRange(1, 1).getValue() || "");
+    if (header.toLowerCase().indexOf("timestamp") !== -1) {
+      return sheets[i];
+    }
+  }
   return (
     ss.getSheetByName("Waitlist") ||
     ss.getSheetByName("Sheet1") ||
@@ -75,7 +116,7 @@ function getWaitlistSheet_() {
 }
 
 function ensureWaitlistHeaders_(sheet) {
-  const headers = [
+  var headers = [
     "Timestamp",
     "Membership Type",
     "Name",
@@ -99,16 +140,13 @@ function ensureWaitlistHeaders_(sheet) {
     return;
   }
 
-  // Ensure Ref header exists in column P (16)
-  const refHeader = sheet.getRange(1, 16).getValue();
-  if (!refHeader) {
-    sheet.getRange(1, 16).setValue("Ref");
-  }
+  // Force column P header to Ref (replace GeoCountry if present)
+  sheet.getRange(1, 16).setValue("Ref");
 }
 
 function getOrCreateSheet_(name, headers) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  let sheet = ss.getSheetByName(name);
+  var sheet = ss.getSheetByName(name);
 
   if (!sheet) {
     sheet = ss.insertSheet(name);
@@ -141,7 +179,7 @@ function jsonResponse_(payload) {
 function doGet() {
   return jsonResponse_({
     success: true,
-    version: 5,
+    version: 6,
     message: "SIMPLARA waitlist + referral handler is running",
   });
 }
