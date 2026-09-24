@@ -65,6 +65,9 @@ export default function ReferralTracker() {
 
     void fetch(scriptUrl, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
       body,
       keepalive: true,
     })
